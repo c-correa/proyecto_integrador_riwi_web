@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCare - Kennel Registration</title>
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/kennel-registration.css">
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/page-register-kennel.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo" onclick="navigateToHome()" style="cursor: pointer;">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">PawCare</span>
+            </div>
+            <button class="contact-btn" id="contactBtn">Contactanos</button>
+        </header>
+
+        <main class="main-content">
+            <h1 class="form-title">Requerimientos para registrarse como guardería en PawCare</h1>
+
+            <form class="registration-form" id="registrationForm">
+                <!-- Información personal del responsable -->
+                <section class="form-section">
+                    <h2 class="section-title">Información personal del responsable:</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Nombre completo:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idDocument">Documento de identidad:</label>
+                        <input type="text" id="idDocument" name="idDocument" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactNumber">Teléfono de contacto:</label>
+                        <input type="tel" id="contactNumber" name="contactNumber" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Dirección de la guardería:</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico válido:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </section>
+
+                <!-- Información de la guardería -->
+                <section class="form-section">
+                    <h2 class="section-title">Información de la guardería:</h2>
+                    
+                    <div class="form-group">
+                        <label for="nurseryName">Nombre de la guardería:</label>
+                        <input type="text" id="nurseryName" name="nurseryName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nurseryAddress">Dirección de la guardería:</label>
+                        <input type="text" id="nurseryAddress" name="nurseryAddress" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="facilitiesPhoto">Foto de las instalaciones (mínimo 3):</label>
+                        <input type="file" id="facilitiesPhoto" name="facilitiesPhoto" multiple accept="image/*" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maxCapacity">Capacidad máxima de animales (por especie):</label>
+                        <input type="number" id="maxCapacity" name="maxCapacity" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="serviceTypes">Tipos de servicios ofrecidos (guardería de día, hospedaje nocturno, etc):</label>
+                        <textarea id="serviceTypes" name="serviceTypes" rows="3" required></textarea>
+                    </div>
+                </section>
+
+                <!-- Requerimientos de seguridad y legalidad -->
+                <section class="form-section">
+                    <h2 class="section-title">Requerimientos de seguridad y legalidad:</h2>
+                    
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="requirements" value="mercantil" required>
+                            <span class="checkmark"></span>
+                            Certificado de constitución de los mercantil propio (si procede) y del acreedor
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="requirements" value="norms" required>
+                            <span class="checkmark"></span>
+                            Cumplimiento de normas básicas de bienestar animal (espacio limpio, ventilado y seguro)
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="requirements" value="nit" required>
+                            <span class="checkmark"></span>
+                            En caso de ser empresa, registro mercantil o NIT
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Experiencia y referencias -->
+                <section class="form-section">
+                    <h2 class="section-title">Experiencia y referencias:</h2>
+                    
+                    <div class="form-group">
+                        <label for="experience">Experiencia previa en el cuidado de animales (opcional, pero recomendado):</label>
+                        <textarea id="experience" name="experience" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="references">Posibilidad de aportar referencias de clientes anteriores:</label>
+                        <textarea id="references" name="references" rows="3"></textarea>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Registrar</button>
+                    <button type="button" class="cancel-btn" id="cancelBtn">Cancelar</button>
+                    <button type="button" class="email-btn" id="emailBtn">Enviar</button>
+                    <button id="scrollTopBtn" class="scroll-top">Salir</button>                
+                </div>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <span class="footer-icon">🐾</span>
+            <span>PawCare</span>
+        </footer>
+    </div>
+</body>
+</html>
+
+

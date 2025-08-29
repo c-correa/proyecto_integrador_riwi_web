@@ -39,4 +39,26 @@ export const api = {
   // Owners
   getOwners: () => request("/owners"),
   getOwner: (id) => request(`/owners/${id}`),
+  createOwner: (data) => request("/owners", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
+
+  // Authentication
+  login: (credentials) => request("/auth/login", {
+    method: "POST",
+    body: JSON.stringify(credentials),
+  }),
+
+  // Search
+  searchServices: (filters) => request("/search", {
+    method: "POST",
+    body: JSON.stringify(filters),
+  }),
+
+  // Kennel registration
+  registerKennel: (data) => request("/kennels/register", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
 };

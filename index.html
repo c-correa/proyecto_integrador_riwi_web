@@ -1,24 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
-  <link rel="stylesheet" href="./src/styles/globals.css" />
-  <script type="module" src="./src/js/main.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawCare</title>
+  <link rel="stylesheet" href="./src/styles/globals.css">
 </head>
-<body class="bg-gray-50 text-gray-900">
-  <!-- Navbar -->
-  <nav class="flex gap-4 p-4 bg-white shadow">
-    <a href="/index.html">Home</a>
-    <a href="/src/pages/users.html">Users</a>
-    <a href="/src/pages/login.html">Login</a>
-  </nav>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="nav-left">
+      <span class="nav-home">Home</span>
+    </div>
+    <div class="nav-center">
+      <div class="logo-container">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4S13.1 6 12 6 10 5.1 10 4 10.9 2 12 2M8.5 7C9.6 7 10.5 7.9 10.5 9S9.6 11 8.5 11 6.5 10.1 6.5 9 7.4 7 8.5 7M15.5 7C16.6 7 17.5 7.9 17.5 9S16.6 11 15.5 11 13.5 10.1 13.5 9 14.4 7 15.5 7M12 8C15.31 8 18 10.69 18 14V22H6V14C6 10.69 8.69 8 12 8Z' fill='%234a5568'/%3E%3C/svg%3E" alt="PawCare Logo" class="logo-icon">
+        <span class="logo-text">PawCare</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="./src/pages/login.html" class="nav-link">Iniciar sesión</a>
+      <a href="./src/pages/register.html" class="nav-link">Inscribete</a>
+    </div>
+  </header>
 
-  <!-- Contenido -->
-  <main class="p-6">
-    <h1 class="text-2xl font-bold">Bienvenido a la MPA 👋</h1>
-    <p class="text-gray-600">Esta es la página principal.</p>
-  </main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bienvenido a PawCare</h1>
+      <p>Guarderías para mascotas : Encuentra el mejor lugar para tu mascota</p>
+      <button class="btn-explora">Explora</button>
+    </div>
+  </section>
+
+  <!-- Cards -->
+  <section class="cards">
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/Guarderia_para_perros_blog_de_pelos.jpg.jpg" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Prados caninos</h3>
+      <p>Cra. 48 #120-137, Nte. Centro Historico, Villa Julia, Barranquilla.</p>
+      <button class="btn-card">Button</button>
+    </div>
+
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/Image.png" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Huellas felices</h3>
+      <p>Las Mercedes, Barranquilla, Atlántico_ Las Mercedes, Barranquilla, Atlántico</p>
+      <button class="btn-card">Button</button>
+    </div>
+
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/file_00000000749861f89afa72857b0d7f69.png" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Prados caninos</h3>
+      <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+      <button class="btn-card">Button</button>
+    </div>
+
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/Guarderia_para_perros_blog_de_pelos.jpg.jpg" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Prados caninos</h3>
+      <p>Cra. 46 #120-157, Nte. Centro Historica, Villa Julia, Barranquilla.</p>
+      <button class="btn-card">Button</button>
+    </div>
+
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/Image.png" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Huellas felices</h3>
+      <p>Las Mercedes, Barranquilla, Atlántico_ Las Mercedes, Barranquilla, Atlántico</p>
+      <button class="btn-card">Button</button>
+    </div>
+
+    <div class="card">
+      <div class="card-logo">
+        <img src="./proyecto-main/proyecto_integrador_riwi_api-main/public/img/file_00000000749861f89afa72857b0d7f69.png" alt="Logo Guardería">
+        <span class="logo-text">Borcelle</span>
+      </div>
+      <h3>Prados caninos</h3>
+      <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.</p>
+      <button class="btn-card">Button</button>
+    </div>
+  </section>
+
+  <!-- About Us -->
+  <section class="about-section">
+    <h2>Sobre nosotros : PawCare</h2>
+    <p>conecta a dueños de mascotas con cuidadores, paseadores y amantes de los animales que ofrecen atención confiable, como si fueran parte de tu familia, y te ayudamos a encontrar las mejores guarderias para tu animal.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <span class="footer-paw">🐾</span>
+      <span class="footer-copyright">© 2025</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

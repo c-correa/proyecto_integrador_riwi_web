@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCare - Mi Perfil</title>
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/page-profile.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo">🐾 PawCare</div>
+        <nav class="nav-menu">
+            <a href="../../index.html" class="nav-link">Inicio</a>
+            <a href="search.html" class="nav-link">Buscar</a>
+            <a href="#" class="nav-link" id="logoutBtn">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%234a90e2'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ffffff'/%3E%3C/svg%3E" alt="Avatar">
+            </div>
+            <div class="profile-info">
+                <h1 id="userName">Usuario</h1>
+                <p id="userEmail">usuario@email.com</p>
+                <button class="btn-edit-profile">Editar Perfil</button>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <!-- Mis Mascotas -->
+            <section class="profile-section">
+                <h2> Mis Mascotas</h2>
+                <div class="pets-grid" id="petsGrid">
+                    <div class="pet-card">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23ff8c42'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ffffff'/%3E%3C/svg%3E" alt="Mascota">
+                        <h3>Max</h3>
+                        <p>Golden Retriever</p>
+                        <button class="btn-edit">Editar</button>
+                    </div>
+                    <button class="btn-add-pet">+ Agregar Mascota</button>
+                </div>
+            </section>
+
+            <!-- Reservas Recientes -->
+            <section class="profile-section">
+                <h2> Reservas Recientes</h2>
+                <div class="reservations-list" id="reservationsList">
+                    <div class="reservation-card">
+                        <div class="reservation-info">
+                            <h3>Prados Caninos</h3>
+                            <p>Guardería de día - 15 de Enero, 2025</p>
+                            <span class="status confirmed">Confirmada</span>
+                        </div>
+                        <button class="btn-view">Ver Detalles</button>
+                    </div>
+                    <div class="reservation-card">
+                        <div class="reservation-info">
+                            <h3>Huellas Felices</h3>
+                            <p>Paseo - 12 de Enero, 2025</p>
+                            <span class="status completed">Completada</span>
+                        </div>
+                        <button class="btn-view">Ver Detalles</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Favoritos -->
+            <section class="profile-section">
+                <h2> Mis Favoritos</h2>
+                <div class="favorites-grid" id="favoritesGrid">
+                    <div class="favorite-card">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23e6f7ff'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ff8c42'/%3E%3C/svg%3E" alt="Guardería">
+                        <h3>Prados Caninos</h3>
+                        <p>Guardería de día</p>
+                        <button class="btn-remove">Quitar</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-about">
+            <h3>🐾 PawCare</h3>
+            <p>Conectando dueños de mascotas con los mejores cuidadores</p>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 PawCare - Todos los derechos reservados </p>
+        </div>
+    </footer>
+</body>
+</html>
+

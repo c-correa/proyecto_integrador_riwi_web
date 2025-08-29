@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCare - Register</title>
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/page-register.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sección izquierda -->
+        <div class="left-section">
+            <div class="header">
+                <span class="page-label"></span>
+                <div class="logo-container" onclick="navigateToHome()" style="cursor: pointer;">
+                    <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo" class="logo">
+                    <h1>PawCare</h1>
+                </div>
+            </div>
+
+            <div class="register-section">
+                <h2 class="register-title">REGÍSTRATE EN<br>PAWCARE</h2>
+                <p class="register-description">
+                    llegara informacion a tu comero comprovando los requisitos para formar parte de nuestra pagina web.
+                </p>
+            </div>
+
+            <div class="promo-card">
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <h3>COMIENZA<br>TU EXPERIENCIA</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer-content">
+                    <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo" class="footer-logo">
+                    <span class="copyright">© 2025</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección derecha -->
+        <div class="right-section">
+            <div class="register-overlay">
+                <div class="register-card">
+                    <h2>Bienvenido a PawCare</h2>
+                    <p>Crea tu cuenta y te ayudamos a encontrar un lugar seguro para tu amiga peludo.</p>
+
+                    <form class="register-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" id="usuario" name="usuario" placeholder="Johndoe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input type="email" id="correo" name="correo" placeholder="johndoe@gmail.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="(259) 880-0100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-register">Contraseña</label>
+                            <div class="password-input">
+                                <input type="password" id="password-register" name="password" placeholder="8534_john_Kurniawan" required>
+                                <button type="button" class="toggle-password" onclick="togglePasswordRegister()">
+                                    <img src="../../public/img/eye-fill.svg" alt="Mostrar contraseña" class="eye-icon" id="eye-show-register">
+                                    <img src="../../public/img/eye-slash.svg" alt="Ocultar contraseña" class="eye-icon hidden" id="eye-hide-register">
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="register-button">
+                            Registrarse
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
