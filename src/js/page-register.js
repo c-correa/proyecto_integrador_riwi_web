@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const formData = new FormData(registerForm);
         const userData = {
-            name: formData.get("usuario"),  // <- aquí está el cambio
+            full_name: formData.get("usuario"),
             email: formData.get("correo"),
             phone: formData.get("telefono"),
             password: formData.get("password")
@@ -19,17 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const originalText = submitBtn.textContent;
             submitBtn.textContent = "Registrando...";
             submitBtn.disabled = true;
-            
+
+            // Debug: lo que se envía
+            console.log("Datos enviados:", userData);
+
             const response = await api.createOwner(userData);
-            
+
+            // Debug: lo que responde el servidor si todo sale bien
+            console.log("Respuesta del servidor:", response);
+
             showMessage("¡Registro exitoso! Ya puedes iniciar sesión.", "success");
-            
+
             setTimeout(() => {
                 window.location.href = "login.html";
             }, 2000);
-            
+
         } catch (error) {
             console.error("Registration error:", error);
+
+            // Solo se muestra los datos enviados (response no existe aquí si hay error)
             showMessage("Error al registrarse. Intenta nuevamente.", "error");
         } finally {
             const submitBtn = registerForm.querySelector(".register-button");
@@ -107,7 +115,7 @@ function showMessage(message, type = 'info') {
     }
 
     const messageDiv = document.createElement('div');
-    messageDiv.className =`auth-message ${type}`;
+    messageDiv.className = `auth-message ${type}`;
     messageDiv.textContent = message;
 
     Object.assign(messageDiv.style, {
@@ -126,7 +134,7 @@ function showMessage(message, type = 'info') {
         boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
         backgroundColor: type === 'error' ? '#f8d7da' : type === 'success' ? '#d4edda' : '#d1ecf1',
         color: type === 'error' ? '#721c24' : type === 'success' ? '#155724' : '#0c5460',
-        border:` 1px solid ${type === 'error' ? '#f5c6cb' : type === 'success' ? '#c3e6cb' : '#bee5eb'}`
+        border: `1px solid ${type === 'error' ? '#f5c6cb' : type === 'success' ? '#c3e6cb' : '#bee5eb'}`
     });
 
     document.body.appendChild(messageDiv);
