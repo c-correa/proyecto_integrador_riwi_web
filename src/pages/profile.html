@@ -2,64 +2,53 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCare - Mi Perfil</title>
-    <link rel="stylesheet" href="../styles/profile.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawCare - Mi Perfil</title>
+  <link rel="stylesheet" href="../styles/profile.css">
 </head>
 
 <body>
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Dog_Paw_Print.png" alt="Logo PawCare">
-        <div class="actions">
-                <button onclick="window.location.href='buscar-store.html'">
-                    🔍
-                </button>
-            <button class="btn" onclick="window.location.href='publication.html'">Crear anuncio</button>
-        </div>
-    </header>
-
-    <!-- Perfil -->
-    <section class="profile">
-        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Perfil">
-        <h2>Huellas felices</h2>
-        <p><strong>Especialidad:</strong> Paseos, cuidados y hospedaje para mascotas.<br>
-            Entendemos el vínculo único y especial que tienes con tu mascota. Sabemos lo difícil que es, especialmente
-            en la ciudad, encontrar un lugar de confianza donde tu amigo esté bien cuidado.</p>
-    </section>
-
-    <!-- Galería -->
-    <section class="gallery">
-        <h3>Nuestra Galería</h3>
-        <div class="gallery-container">
-            <img src="https://placedog.net/400/300?id=1" alt="Dog 1">
-            <img src="https://placedog.net/400/300?id=2" alt="Dog 2">
-            <img src="https://placedog.net/400/300?id=3" alt="Dog 3">
-        </div>
-        <button class="btn-gallery">Agregar foto +</button>
-    </section>
-
-    <!-- Servicios -->
-    <section class="services">
-        <h3>Nuestros Servicios</h3>
-        <ul>
-            <li>Guardería de día</li>
-            <li>Paseos de 30 min</li>
-            <li>Hospedaje nocturno</li>
-        </ul>
-    </section>
-
-    <!-- Botones inferiores -->
-    <div class="actions-bottom">
-        <button class="btn-edit">Editar perfil</button>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Dog_Paw_Print.png" alt="Logo PawCare">
+    <div class="actions">
+      <button onclick="window.location.href='search-store.html'">🔍</button>
+      <button class="btn" onclick="window.location.href='publication.html'">Crear anuncio</button>
     </div>
+  </header>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2025 PawCare
-    </footer>
+  <!-- Perfil -->
+  <section class="profile">
+    <img id="profile-img" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Perfil">
+    <h2 id="profile-name">Cargando...</h2>
+    <p id="profile-location"></p>
+    <p id="profile-description"></p>
+  </section>
 
-    <script type="module" src="../js/page-profile.js"></script>
+  <!-- Galería -->
+  <section class="gallery">
+    <h3>Nuestra Galería</h3>
+    <div class="gallery-container" id="gallery"></div>
+    <button class="btn-gallery">Agregar foto +</button>
+  </section>
+
+  <!-- Servicios -->
+  <section class="services">
+    <h3>Nuestros Servicios</h3>
+    <ul id="services"></ul>
+  </section>
+
+  <!-- Botones inferiores -->
+  <div class="actions-bottom">
+    <button class="btn-edit">Editar perfil</button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 PawCare
+  </footer>
+
+  <script type="module" src="../js/page-profile.js"></script>
 </body>
 
 </html>
