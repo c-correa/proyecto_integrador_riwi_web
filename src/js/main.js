@@ -22,3 +22,7 @@ function navigateToHome() {
   
   window.location.href = homePath;
 }
+document.getElementById("btn-explora").addEventListener("click", function () {
+  
+  window.location.href = "../src/pages/search.html";
+});
