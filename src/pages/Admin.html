@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Guarderías</title>
+  <link rel="stylesheet" href="../styles/Admin.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo PawCare">
+      <span>PawCare</span>
+    </div>
+    <h1>Panel Admin - seleccionar Guarderías</h1>
+    <div class="user-info">
+      <p>Albert <br><span>Administrador</span></p>
+      <button class="btn logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <!-- SUBTÍTULO -->
+  <p class="subtitle">Revisa, filtra y selecciona guarderías para las reservas.</p>
+
+  <!-- LISTA DE GUARDERÍAS -->
+  <main class="guarderias">
+    <!-- Tarjeta 1 -->
+    <article class="card">
+      <img src="img/logo.png" alt="Logo guardería" class="card-img">
+      <div class="card-body">
+        <h2>Método de pago</h2>
+        <p>Cra. 49 #100 - 157, B/ Centro Histórico, Villa Juárez, Barranquilla.</p>
+        <div class="actions">
+          <butto id="approve" class="btn approve">Aprobar</button>
+          <button class="btn danger">Rechazar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tarjeta 2 -->
+    <article class="card">
+      <img src="img/logo.png" alt="Logo guardería" class="card-img">
+      <div class="card-body">
+        <p>very short story. Add main takeaway points, quotes, anecdotes, or even a very short story.</p>
+        <div class="actions">
+          <button class="btn approve">Aprobar</button>
+          <button class="btn danger">Rechazar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Tarjeta 3 -->
+    <article class="card">
+      <img src="img/logo.png" alt="Logo guardería" class="card-img">
+      <div class="card-body">
+        <h2>Huellas felices</h2>
+        <p>Las Mercedes, Barranquilla, Atlántico.</p>
+        <div class="actions">
+          <button class="btn approve">Aprobar</button>
+          <button class="btn danger">Rechazar</button>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- BOTÓN FINAL -->
+  <div class="footer">
+    <button class="btn home">Volver al inicio</button>
+  </div>
+
+  <!-- COPYRIGHT -->
+  <footer>
+    <p>&copy; 2025</p>
+  </footer>
+  <script type="module" src="../js/page-admin.js"></script>
+
+</body>
+</html>
