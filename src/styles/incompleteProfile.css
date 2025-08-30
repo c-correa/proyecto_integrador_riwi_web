@@ -1,0 +1,108 @@
+/* --- Base reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* --- Header layout --- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.logo { 
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* --- Header actions (search + buttons) --- */
+.header-actions {
+  display: flex;
+  align-items: center;   /* ✅ Vertically centered */
+  gap: 12px;             /* Consistent spacing */
+}
+
+/* 🔍 Icon-only button (search) */
+.icon-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;   /* Perfectly round */
+  transition: filter 0.2s;
+}
+.icon-btn:hover .icon { 
+  filter: drop-shadow(0 0 1px rgba(30,144,255,0.7));
+}
+
+/* --- General button style --- */
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+  white-space: nowrap;
+}
+
+/* ⚪ Neutral button (requirements form) */
+.btn-light {
+  background: #e9ecef;
+  color: #222;
+}
+.btn-light:hover { background: #e3e7ea; }
+
+/* 🔵 Primary button (logout) */
+.btn-primary {
+  background: #1e90ff;
+  color: #fff;
+}
+.btn-primary:hover { background: #1878d9; }
+
+/* --- Profile section --- */
+.profile {
+  text-align: center;
+  padding: 48px 16px 0;
+}
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+.profile h2 { font-size: 1.4rem; margin-bottom: 6px; }
+.location { color: #666; margin-bottom: 16px; }
+.description {
+  color: #6b6b6b;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* --- Bottom action (single button) --- */
+.actions-bottom {
+  display: flex;
+  justify-content: flex-end;
+  padding: 28px 32px 40px;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  color: #9aa0a6;
+  padding: 18px 0 26px;
+  font-size: 0.9rem;
+}
