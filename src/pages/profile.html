@@ -1,100 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawCare - Mi Perfil</title>
-    <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/profile.css">
-    <script type="module" src="../js/main.js"></script>
-    <script type="module" src="../js/page-profile.js"></script>
 </head>
+
 <body>
-    <!-- Header -->
-    <header class="navbar">
-        <div class="logo">🐾 PawCare</div>
-        <nav class="nav-menu">
-            <a href="search.html" class="nav-link">Buscar</a>
-            <a href="#" class="nav-link" id="logoutBtn">Cerrar Sesión</a>
-        </nav>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Dog_Paw_Print.png" alt="Logo PawCare">
+        <div class="actions">
+                <button onclick="window.location.href='buscar-store.html'">
+                    🔍
+                </button>
+            <button class="btn" onclick="window.location.href='publication.html'">Crear anuncio</button>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="profile-container">
-        <div class="profile-header">
-            <div class="profile-avatar">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%234a90e2'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ffffff'/%3E%3C/svg%3E" alt="Avatar">
-            </div>
-            <div class="profile-info">
-                <h1 id="userName">Usuario</h1>
-                <p id="userEmail">usuario@email.com</p>
-                <button class="btn-edit-profile">Editar Perfil</button>
-            </div>
+    <!-- Perfil -->
+    <section class="profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Perfil">
+        <h2>Huellas felices</h2>
+        <p><strong>Especialidad:</strong> Paseos, cuidados y hospedaje para mascotas.<br>
+            Entendemos el vínculo único y especial que tienes con tu mascota. Sabemos lo difícil que es, especialmente
+            en la ciudad, encontrar un lugar de confianza donde tu amigo esté bien cuidado.</p>
+    </section>
+
+    <!-- Galería -->
+    <section class="gallery">
+        <h3>Nuestra Galería</h3>
+        <div class="gallery-container">
+            <img src="https://placedog.net/400/300?id=1" alt="Dog 1">
+            <img src="https://placedog.net/400/300?id=2" alt="Dog 2">
+            <img src="https://placedog.net/400/300?id=3" alt="Dog 3">
         </div>
+        <button class="btn-gallery">Agregar foto +</button>
+    </section>
 
-        <div class="profile-content">
-            <!-- Mis Mascotas -->
-            <section class="profile-section">
-                <h2> Mis Mascotas</h2>
-                <div class="pets-grid" id="petsGrid">
-                    <div class="pet-card">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23ff8c42'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ffffff'/%3E%3C/svg%3E" alt="Mascota">
-                        <h3>Max</h3>
-                        <p>Golden Retriever</p>
-                        <button class="btn-edit">Editar</button>
-                    </div>
-                    <button class="btn-add-pet">+ Agregar Mascota</button>
-                </div>
-            </section>
+    <!-- Servicios -->
+    <section class="services">
+        <h3>Nuestros Servicios</h3>
+        <ul>
+            <li>Guardería de día</li>
+            <li>Paseos de 30 min</li>
+            <li>Hospedaje nocturno</li>
+        </ul>
+    </section>
 
-            <!-- Reservas Recientes -->
-            <section class="profile-section">
-                <h2> Reservas Recientes</h2>
-                <div class="reservations-list" id="reservationsList">
-                    <div class="reservation-card">
-                        <div class="reservation-info">
-                            <h3>Prados Caninos</h3>
-                            <p>Guardería de día - 15 de Enero, 2025</p>
-                            <span class="status confirmed">Confirmada</span>
-                        </div>
-                        <button class="btn-view">Ver Detalles</button>
-                    </div>
-                    <div class="reservation-card">
-                        <div class="reservation-info">
-                            <h3>Huellas Felices</h3>
-                            <p>Paseo - 12 de Enero, 2025</p>
-                            <span class="status completed">Completada</span>
-                        </div>
-                        <button class="btn-view">Ver Detalles</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Favoritos -->
-            <section class="profile-section">
-                <h2> Mis Favoritos</h2>
-                <div class="favorites-grid" id="favoritesGrid">
-                    <div class="favorite-card">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23e6f7ff'/%3E%3Cpath d='M35 45c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45zm22 0c0-5 4-9 9-9s9 4 9 9v10c0 5-4 9-9 9s-9-4-9-9V45z' fill='%23ff8c42'/%3E%3C/svg%3E" alt="Guardería">
-                        <h3>Prados Caninos</h3>
-                        <p>Guardería de día</p>
-                        <button class="btn-remove">Quitar</button>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+    <!-- Botones inferiores -->
+    <div class="actions-bottom">
+        <button class="btn-edit">Editar perfil</button>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-about">
-            <h3>🐾 PawCare</h3>
-            <p>Conectando dueños de mascotas con los mejores cuidadores</p>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 PawCare - Todos los derechos reservados </p>
-        </div>
+    <footer>
+        &copy; 2025 PawCare
     </footer>
-</body>
-</html>
 
+    <script type="module" src="../js/page-profile.js"></script>
+</body>
+
+</html>
