@@ -22,34 +22,3 @@ function navigateToHome() {
   
   window.location.href = homePath;
 }
-
-// Ejemplo: dark mode toggle
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("dark-toggle");
-  if (toggle) {
-    toggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-    });
-  }
-
-  // Agregar funcionalidad de clic a todos los logos
-  const logoContainers = document.querySelectorAll('.logo-container, .logo');
-  logoContainers.forEach(container => {
-    container.style.cursor = 'pointer';
-    container.addEventListener('click', navigateToHome);
-  });
-
-  // También agregar funcionalidad a logos individuales
-  const logoImages = document.querySelectorAll('img[alt*="PawCare"], img[alt*="Logo"]');
-  logoImages.forEach(img => {
-    img.style.cursor = 'pointer';
-    img.addEventListener('click', navigateToHome);
-  });
-
-  // Agregar funcionalidad a elementos con clase logo-text
-  const logoTexts = document.querySelectorAll('.logo-text');
-  logoTexts.forEach(text => {
-    text.style.cursor = 'pointer';
-    text.addEventListener('click', navigateToHome);
-  });
-});
