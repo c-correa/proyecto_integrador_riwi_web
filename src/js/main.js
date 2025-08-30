@@ -1,28 +1,36 @@
 // Script global para todas las páginas
 console.log("App cargada correctamente.");
 
-// Función para navegar al inicio al hacer clic en el logo
-function navigateToHome() {
-  // Determinar la ruta correcta según la ubicación actual
+// Hacer la función accesible desde atributos inline (onclick) en los HTML
+window.navigateToHome = function () {
   const currentPath = window.location.pathname;
   let homePath = '../../index.html';
-  
-  // Si estamos en una página dentro de src/pages/, necesitamos subir dos niveles
+
   if (currentPath.includes('/src/pages/')) {
     homePath = '../../index.html';
-  }
-  // Si estamos en la raíz del proyecto web
-  else if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
+  } else if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
     homePath = './index.html';
-  }
-  // Si estamos en src/
-  else if (currentPath.includes('/src/')) {
+  } else if (currentPath.includes('/src/')) {
     homePath = '../index.html';
   }
-  
+
   window.location.href = homePath;
+};
+
+// Helper seguro para añadir listeners evitando "cannot read properties of null"
+export function safeAddListener(selectorOrElement, event, handler) {
+    if (!selectorOrElement) return;
+    let el = null;
+    if (typeof selectorOrElement === "string") el = document.querySelector(selectorOrElement);
+    else el = selectorOrElement;
+    if (el) el.addEventListener(event, handler);
 }
-document.getElementById("btn-explora").addEventListener("click", function () {
-  
-  window.location.href = "../src/pages/search.html";
+
+// Asegura que la lógica del main se ejecute cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+    // Añadir listener de forma segura al botón "Explora" (si existe en la página actual)
+    safeAddListener('#btn-explora', 'click', () => {
+        window.location.href = "../src/pages/search.html";
+    });
+
 });
