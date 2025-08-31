@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizar Información Legal - Guardería Canina</title>
+  <link rel="stylesheet" href="../styles/form-info-store.css">
+</head>
+<body>
+  <main class="form-container">
+    <h1>Actualizar Información Legal</h1>
+    <form id="update-store-form" class="form">
+      <label>
+        Razón Social / Nombre Comercial *
+        <input type="text" name="business_name" required>
+      </label>
+
+      <label>
+        Número de Identificación (NIT, CIF, RFC, etc.) *
+        <input type="text" name="tax_id" required>
+      </label>
+
+      <label>
+        Licencia de Funcionamiento / Registro Mercantil
+        <input type="text" name="business_license">
+      </label>
+
+      <label>
+        Dirección Física *
+        <input type="text" name="main_address" required>
+      </label>
+
+      <label>
+        Teléfono Oficial
+        <input type="text" name="official_phone">
+      </label>
+
+      <label>
+        Correo Electrónico Oficial
+        <input type="email" name="official_email">
+      </label>
+
+      <button type="submit" id="submit-btn">Actualizar Información</button>
+    </form>
+
+    <div id="message-container"></div>
+  </main>
+
+  <script type="module" src="../js/form-info-store.js"></script>
+</body>
+</html>

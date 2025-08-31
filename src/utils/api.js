@@ -25,6 +25,12 @@ export const api = {
     method: "POST",
     body: JSON.stringify(data),
   }),
+  updateStore: (id, data) =>   // 👈 NUEVO
+    request(`/stores/${id}`, {
+      method: "PATCH", // o PATCH según tu backend
+      body: JSON.stringify(data),
+    }),
+
 
   // Store branches
   getBranches: () => request("/store-branches"),
