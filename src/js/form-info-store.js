@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         official_phone: formData.get('official_phone').trim(),
         official_email: formData.get('official_email').trim(),
       };
+      console.log(12)
 
       if (!data.business_name || !data.tax_id || !data.main_address) {
         throw new Error("Por favor complete todos los campos obligatorios");
