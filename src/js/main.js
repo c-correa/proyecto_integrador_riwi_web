@@ -1,36 +1,30 @@
-// Script global para todas las páginas
-console.log("App cargada correctamente.");
+import { api } from "../utils/api";
 
-// Hacer la función accesible desde atributos inline (onclick) en los HTML
-window.navigateToHome = function () {
-  const currentPath = window.location.pathname;
-  let homePath = '../../index.html';
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector("#stores-container");
+  if (!container) return;
 
-  if (currentPath.includes('/src/pages/')) {
-    homePath = '../../index.html';
-  } else if (currentPath.endsWith('/') || currentPath.endsWith('/index.html')) {
-    homePath = './index.html';
-  } else if (currentPath.includes('/src/')) {
-    homePath = '../index.html';
+  try {
+    const stores = await api.getStores();
+
+    if (!stores.length) {
+      container.innerHTML = `<p>No hay guarderías registradas todavía 🐾</p>`;
+      return;
+    }
+
+    // Construimos las tarjetas dinámicamente
+    container.innerHTML = stores.map(store => `
+      <div class="store-card">
+        <h3>${store.name}</h3>
+        <p>${store.description || "Sin descripción disponible"}</p>
+        <p><strong>Dirección:</strong> ${store.address || "No especificada"}</p>
+      <a href="../pages/store-detail.html?id=${store.id}" class="btn-detalle">Ver más</a>
+      </div>
+    `).join("");
+    
+
+  } catch (err) {
+    console.error("Error cargando guarderías:", err);
+    container.innerHTML = `<p class="error">⚠️ No se pudieron cargar las guarderías. Intenta más tarde.</p>`;
   }
-
-  window.location.href = homePath;
-};
-
-// Helper seguro para añadir listeners evitando "cannot read properties of null"
-export function safeAddListener(selectorOrElement, event, handler) {
-    if (!selectorOrElement) return;
-    let el = null;
-    if (typeof selectorOrElement === "string") el = document.querySelector(selectorOrElement);
-    else el = selectorOrElement;
-    if (el) el.addEventListener(event, handler);
-}
-
-// Asegura que la lógica del main se ejecute cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-    // Añadir listener de forma segura al botón "Explora" (si existe en la página actual)
-    safeAddListener('#btn-explora', 'click', () => {
-        window.location.href = "../src/pages/search.html";
-    });
-
 });
