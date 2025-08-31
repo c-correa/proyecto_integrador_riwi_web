@@ -29,6 +29,7 @@ export const api = {
   // Store branches
   getBranches: () => request("/store-branches"),
   getBranch: (id) => request(`/store-branches/${id}`),
+  getBranchBySotre: (id) => request(`/store-branches/by/${id}`),
 
   // Publications
   getPublications: () => request("/publications"),
