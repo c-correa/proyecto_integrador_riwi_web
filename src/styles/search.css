@@ -77,23 +77,27 @@ body {
     background: #1a202c;
 }
 
-/* Main Layout */
+/* Layout */
 .main {
     display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 24px;
 }
 
 /* Sidebar Styles */
 .sidebar {
-    width: 300px;
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    height: fit-content;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    flex: 0 0 280px;
+}
+.sidebar .filter-section {
+    background: #ffffff;
+    border: 1px solid #e6e7ea;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.03);
+    position: sticky;
+    top: 88px;
 }
 
 .filter-section h3 {
@@ -103,40 +107,54 @@ body {
     color: #2d3748;
 }
 
+/* Filter tags */
 .filter-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    gap: 8px;
+    margin-bottom: 12px;
 }
-
 .filter-tag {
+    background: #f3f4f6;
+    color: #111827;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: #e2e8f0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.875rem;
-    color: #4a5568;
+    gap: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
-
-.remove-tag {
-    background: none;
-    border: none;
-    color: #718096;
-    cursor: pointer;
-    font-size: 1rem;
+.filter-tag .remove-tag {
+    background: transparent;
+    border: 0;
     padding: 0;
-    line-height: 1;
-}
-
-.remove-tag:hover {
-    color: #2d3748;
+    margin: 0;
+    cursor: pointer;
+    font-weight: 700;
+    color: #6b7280;
 }
 
 .checkbox-group {
     margin-bottom: 1.5rem;
+}
+
+/* Checkbox lists inside sidebar */
+.filter-group {
+    margin-bottom: 16px;
+}
+.filter-group h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #374151;
+}
+.checkbox-list .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #374151;
 }
 
 .checkbox-item {
@@ -214,9 +232,15 @@ body {
 }
 
 .price-range {
-    font-size: 0.875rem;
-    color: #718096;
+    font-size: 14px;
+    color: #374151;
+    font-weight: 600;
     margin-bottom: 1rem;
+}
+
+.price-controls input[type="range"] {
+    width: 100%;
+    margin: 6px 0;
 }
 
 .price-slider {
@@ -255,18 +279,22 @@ body {
 
 /* Content Area */
 .content {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
 .service-card {
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 2px solid #e2e8f0;
+    border: 1px solid #e6e7ea;
+    padding: 14px;
+    border-radius: 10px;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+    background: #fff;
 }
 
 .service-header {
@@ -282,10 +310,12 @@ body {
 }
 
 .provider-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 0.5rem;
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    border-radius: 8px;
     flex-shrink: 0;
+    background: #f8fafc;
 }
 
 .service-info {
@@ -293,122 +323,89 @@ body {
 }
 
 .service-info h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 0.5rem;
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    color: #111827;
 }
 
 .service-info p {
-    color: #718096;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
 }
 
-.service-text {
-    flex: 1;
-}
-
-.service-title {
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 0.5rem;
-}
-
-.service-description {
-    color: #718096;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-.favorite-btn {
+.service-meta {
+    margin-top: 8px;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #edf2f7;
-    border: 1px solid #e2e8f0;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    color: #4a5568;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
-.favorite-btn:hover {
-    background: #e2e8f0;
-    color: #2d3748;
+.meta-item {
+    background: #eef2ff;
+    color: #3730a3;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
 }
 
-.favorite-btn svg {
-    width: 16px;
-    height: 16px;
-    fill: #fbbf24;
-}
-
-/* Back to Start Button */
-.back-to-start {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: #3182ce;
+/* Actions */
+.service-actions .contact-btn {
+    background: #2563eb;
     color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    font-weight: 600;
 }
-
-.back-to-start:hover {
-    background: #2c5aa0;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+.service-actions .contact-btn:hover {
+    background: #1e40af;
 }
 
 /* Loading state */
 .loading {
     text-align: center;
-    padding: 2rem;
-    color: #718096;
-    font-size: 1.1rem;
+    padding: 28px;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Back to Start Button */
+.back-to-start {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: none;
+    z-index: 1000;
+    background: #111827;
+    color: #fff;
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(17,24,39,0.15);
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
+@media (max-width: 900px) {
     .main {
         flex-direction: column;
-        padding: 1rem;
+        padding: 16px;
     }
-
     .sidebar {
         width: 100%;
+        flex: none;
+        position: relative;
+        top: auto;
     }
-
-    .service-header,
-    .service-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .provider-avatar {
+        width: 64px;
+        height: 64px;
     }
-
-    .back-to-start {
-        bottom: 1rem;
-        right: 1rem;
+    .service-card {
+        flex-direction: row;
+        gap: 12px;
     }
 }
 

@@ -4,18 +4,16 @@ const BASE_URL = "http://localhost:3000"; // cambia al endpoint real
 async function request(path, options = {}) {
   try {
     const res = await fetch(`${BASE_URL}${path}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       ...options,
     });
 
     if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-
     return await res.json();
   } catch (err) {
     console.error("API error:", err);
-    throw err;
+    // Lanzar error con mensaje más claro para la UI
+    throw new Error("No se pudo conectar al servidor. Comprueba que el backend esté en ejecución.");
   }
 }
 
