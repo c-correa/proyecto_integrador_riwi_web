@@ -8,12 +8,13 @@
 </head>
 <body>
 
+  <!-- Navegación -->
+  <nav class="navbar">
+    <button class="nav-btn" onclick="location.href='index.html'">🏠 Home</button>
+    <button class="nav-btn" onclick="location.href='login.html'">🔑 Iniciar sesión</button>
+  </nav>
+
   <main class="store-detail">
-    <!-- Botón de retorno -->
-    <button id="back-btn" class="back-btn" onclick="history.back()">
-      <span class="back-icon">←</span>
-      Volver
-    </button>
 
     <!-- Aquí va la info de la tienda -->
     <div id="store-detail-container">
@@ -25,6 +26,12 @@
       <p>Buscando sucursales...</p>
     </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-icon">🐾</span>
+    <span>PawCare</span>
+  </footer>
 
   <script type="module" src="../js/page-store-detail.js"></script>
 </body>

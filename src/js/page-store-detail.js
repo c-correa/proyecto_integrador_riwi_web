@@ -82,8 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                    target="_blank" 
                    rel="noopener noreferrer"
                    class="whatsapp-btn">
-                  <span class="whatsapp-icon">📱</span>
-                  Contactar por WhatsApp
+                  <span class="whatsapp-icon">📱Contactar por WhatsApp </span>
                 </a>
               ` : `
                 <div class="no-whatsapp">
