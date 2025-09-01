@@ -59,6 +59,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       navRight.appendChild(adminLink);
     }
 
+    container.classList.add("stores-grid");
+
+    container.innerHTML = stores.map(s => `
+      <div class="store-card">
+        <img 
+          src="${s.logo || '../assets/default-store.png'}" 
+          alt="${s.name}" 
+          class="store-logo"
+        />
+        <h2 class="store-title">${s.name}</h2>
+        <p class="store-description">${s.description || "Sin descripción disponible"}</p>
+        <button 
+          class="store-btn"
+          onclick="window.location.href='../src/pages/store-detail.html?id=${s.id}'"
+        >
+          Ver tienda
+        </button>
+      </div>
+    `).join("");
+
   } catch (err) {
     console.error("Error cargando guarderías:", err);
     container.innerHTML = `<p class="error">⚠️ No se pudieron cargar las guarderías. Intenta más tarde.</p>`;

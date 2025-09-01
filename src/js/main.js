@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <h3>${store.name}</h3>
         <p>${store.description || "Sin descripción disponible"}</p>
         <p><strong>Dirección:</strong> ${store.address || "No especificada"}</p>
-        <a href="../pages/store-detail.html?id=${store.id}" class="btn-detalle">Ver más</a>
+        <a href="../src/pages/store-detail.html?id=${store.id}" class="btn-detalle">Ver más</a>
       </div>
     `).join("");
 
