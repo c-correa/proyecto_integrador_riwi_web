@@ -41,8 +41,7 @@ loginForm.addEventListener("submit", async (e) => {
 
         // Redirigir al profile
         setTimeout(() => {
-            console.log("Redirigiendo a profile.html");
-            window.location.href = "./index.html";
+            window.location.href = "./profile.html";
         }, 1500);
 
     } catch (error) {
