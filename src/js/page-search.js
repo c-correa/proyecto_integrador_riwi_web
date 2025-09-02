@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         updatePriceRange();
     }
 
-    window.navigateToHome = () => {
-        window.location.href = "../../index.html";
-    };
+    // window.navigateToHome = () => {
+    //     window.location.href = "../../index.html";
+    // };
 });
 
 async function loadFilters() {

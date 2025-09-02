@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const storeId = params.get('id');
 
-  if (!storeId) {
-    showMessage('No se encontró el ID de la guardería', 'error');
-    form.style.display = "none";
-    return;
-  }
+  // if (!storeId) {
+  //   showMessage('No se encontró el ID de la guardería', 'error');
+  //   form.style.display = "none";
+  //   return;
+  // }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
