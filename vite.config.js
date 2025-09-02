@@ -8,7 +8,18 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets'
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        login: './src/pages/login.html',
+        register: './src/pages/register.html',
+        search: './src/pages/search.html',
+        admin: './src/pages/Admin.html',
+        'form-info-store': './src/pages/formInfoStore.html',
+        'store-detail': './src/pages/StoreDetail.html'
+      }
+    }
   },
   publicDir: 'public',
   root: '.',
