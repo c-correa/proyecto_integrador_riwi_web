@@ -4,99 +4,134 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#store-detail-container");
   const branchesContainer = document.querySelector("#branches-container");
 
-  // Tomar el ID de la URL
+  // Get the ID from the URL
   const params = new URLSearchParams(window.location.search);
   const storeId = params.get("id");
 
   if (!storeId) {
-    container.innerHTML = "<p class='error'>No se encontró el ID de la guardería</p>";
+    container.innerHTML =
+      "<p class='error'>Store ID not found</p>";
     return;
   }
 
-  // Función para formatear número de teléfono para WhatsApp
+  // Function to format phone number for WhatsApp
   const formatPhoneForWhatsApp = (phone) => {
     if (!phone) return null;
-    // Remover espacios, guiones y paréntesis
-    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-    // Si no empieza con +57 (código de Colombia), agregarlo
-    if (!cleanPhone.startsWith('+57') && !cleanPhone.startsWith('57')) {
+    // Remove spaces, dashes, and parentheses
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
+    // If it doesn't start with +57 (Colombian code), add it
+    if (!cleanPhone.startsWith("+57") && !cleanPhone.startsWith("57")) {
       return `+57${cleanPhone}`;
     }
-    return cleanPhone.startsWith('+') ? cleanPhone : `+${cleanPhone}`;
+    return cleanPhone.startsWith("+") ? cleanPhone : `+${cleanPhone}`;
   };
 
-  // Función para crear enlace de WhatsApp
+  // Function to create WhatsApp link
   const createWhatsAppLink = (phone, storeName, branchName) => {
     const formattedPhone = formatPhoneForWhatsApp(phone);
     if (!formattedPhone) return null;
-    
+
     const message = encodeURIComponent(
-      `¡Hola! Me interesa conocer más sobre los servicios de ${storeName} - Sucursal ${branchName}. ¿Podrían brindarme más información? 🐾`
+      `Hi! I'm interested in learning more about the services of ${storeName} - Branch ${branchName}. Could you provide more information? 🐾`
     );
-    
-    return `https://wa.me/${formattedPhone.replace('+', '')}?text=${message}`;
+
+    return `https://wa.me/${formattedPhone.replace("+", "")}?text=${message}`;
   };
 
   try {
-    // 1. Obtener la tienda
+    // 1. Get the store
     const store = await api.getStore(storeId);
     console.log(5, store);
-    
 
     container.innerHTML = `
-      <div class="store-detail-card">
-        <h1>${store.name}</h1>
-        <p><strong>Descripción:</strong> ${store.description || "Sin descripción"}</p>
-        <p><strong>Dirección:</strong> ${store.address || "No especificada"}</p>
-        <p><strong>Teléfono:</strong> ${store.phone || "No disponible"}</p>
-        <p><strong>Email:</strong> ${store.email || "No disponible"}</p>
+      <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+        <h1 class="text-2xl font-bold text-blue-700 mb-4">${store.name}</h1>
+
+        <p class="text-gray-700 text-sm mb-2">
+          <span class="font-semibold text-gray-900">Description:</span>
+          ${store.description || "No description"}
+        </p>
+
+        <p class="text-gray-700 text-sm mb-2">
+          <span class="font-semibold text-gray-900">Address:</span>
+          ${store.address || "Not specified"}
+        </p>
+
+        <p class="text-gray-700 text-sm mb-2">
+          <span class="font-semibold text-gray-900">Phone:</span>
+          ${store.phone || "Not available"}
+        </p>
+
+        <p class="text-gray-700 text-sm">
+          <span class="font-semibold text-gray-900">Email:</span>
+          ${store.email || "Not available"}
+        </p>
       </div>
     `;
 
-    // 2. Obtener sucursales de esa tienda
+    // 2. Get the store's branches
     const allBranches = await api.getBranches();
     console.log(123, allBranches);
-    
-    const branches = allBranches.filter(b => String(b.store_id) === String(storeId));
+
+    const branches = allBranches.filter(
+      (b) => String(b.store_id) === String(storeId)
+    );
     console.log(branches);
 
     if (!branches.length) {
-      branchesContainer.innerHTML = `<p>No hay sucursales registradas para esta guardería 🐾</p>`;
+      branchesContainer.innerHTML = `<p>No branches registered for this store 🐾</p>`;
       return;
     }
 
-    // 3. Renderizar las sucursales con botones de WhatsApp
+    // 3. Render the branches with WhatsApp buttons
     branchesContainer.innerHTML = `
-      <h2>Sucursales</h2>
+      <h2>Branches</h2>
       <div class="branches-grid">
-        ${branches.map(branch => {
-          const whatsappLink = createWhatsAppLink(branch.phone, store.name, branch.name);
-          
-          return `
-            <div class="branch-card">
-              <h3>${branch.name}</h3>
-              <p><strong>Dirección:</strong> ${branch.address || "No especificada"}</p>
-              <p><strong>Teléfono:</strong> ${branch.phone || "No disponible"}</p>
-              ${whatsappLink ? `
-                <a href="${whatsappLink}" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="whatsapp-btn">
-                  <span class="whatsapp-icon">📱Contactar por WhatsApp </span>
-                </a>
-              ` : `
-                <div class="no-whatsapp">
-                  <span>📵</span>
-                  WhatsApp no disponible
-                </div>
-              `}
-            </div>
-          `;
-        }).join("")}
+        ${branches
+          .map((branch) => {
+            const whatsappLink = createWhatsAppLink(
+              branch.phone,
+              store.name,
+              branch.name
+            );
+
+            return `
+              <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg hover:-translate-y-1 transition-transform">
+                <h3 class="text-blue-600 text-lg font-semibold mb-2">${branch.name}</h3>
+                <p class="text-gray-700 text-sm mb-1">
+                  <span class="font-bold text-gray-900">Address:</span> ${
+                    branch.address || "Not specified"
+                  }
+                </p>
+                <p class="text-gray-700 text-sm mb-1">
+                  <span class="font-bold text-gray-900">Phone:</span> ${
+                    branch.phone || "Not available"
+                  }
+                </p>
+                ${
+                  whatsappLink
+                    ? `
+                  <a href="${whatsappLink}" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     class="inline-flex items-center gap-2 mt-3 px-5 py-2 rounded-full bg-green-500 text-white font-bold hover:bg-green-600 hover:shadow-md hover:-translate-y-1 active:bg-green-700 transition-all">
+                    <span>Contact via WhatsApp</span>
+                  </a>
+                `
+                    : `
+                  <div class="flex items-center gap-2 text-sm text-gray-500 mt-3">
+                    <span>WhatsApp not available</span>
+                  </div>
+                `
+                }
+              </div>
+            `;
+          })
+          .join("")}
       </div>
     `;
   } catch (err) {
     console.error(err);
-    container.innerHTML = `<p class="error">⚠️ Error cargando la guardería</p>`;
+    container.innerHTML = `<p class="error">⚠️ Error loading store information</p>`;
   }
 });
