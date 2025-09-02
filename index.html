@@ -12,60 +12,75 @@
   <meta name="googlebot" content="index,follow">
   <meta name="revisit-after" content="15days">
   <title>PawCare</title>
+
+  <!-- Tailwind CDN (rápido para prototipos) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Si tienes estilos globales personalizados, mantenlos -->
   <link rel="stylesheet" href="./src/styles/globals.css">
 </head>
 
-<body>
+<body class="antialiased text-gray-800 bg-white">
+
   <!-- Header -->
-  <header class="navbar">
-    <div class="nav-left">
-      <span class="nav-home"></span>
-    </div>
-    <div class="nav-center">
-      <div class="logo-container">
-        <img
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4S13.1 6 12 6 10 5.1 10 4 10.9 2 12 2M8.5 7C9.6 7 10.5 7.9 10.5 9S9.6 11 8.5 11 6.5 10.1 6.5 9 7.4 7 8.5 7M15.5 7C16.6 7 17.5 7.9 17.5 9S16.6 11 15.5 11 13.5 10.1 13.5 9 14.4 7 15.5 7M12 8C15.31 8 18 10.69 18 14V22H6V14C6 10.69 8.69 8 12 8Z' fill='%234a5568'/%3E%3C/svg%3E"
-          alt="PawCare Logo" class="logo-icon">
-        <span class="logo-text">PawCare</span>
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <span class="sr-only">Inicio</span>
+          <div class="flex items-center">
+            <img
+              src="./public/img/file_00000000749861f89afa72857b0d7f69.png"
+              alt="PawCare Logo" class="h-8 w-8">
+            <span class="ml-2 text-xl font-semibold text-gray-700">PawCare</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <a href="./src/pages/login.html" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">Iniciar sesión</a>
+          <a href="./src/pages/register.html" class="px-3 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">Inscribete</a>
+        </div>
       </div>
-    </div>
-    <div class="nav-right">
-      <a href="./src/pages/login.html" class="nav-link">Iniciar sesión</a>
-      <a href="./src/pages/register.html" class="nav-link">Inscribete</a>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Bienvenido a PawCare</h1>
-      <p>Guarderías para mascotas : Encuentra el mejor lugar para tu mascota</p>
-      <a href="./src/pages/search.html" class="btn-explora">Explora</a>
+  <section class="relative py-20">
+    <!-- Background image -->
+    <div class="absolute inset-0 bg-cover bg-no-repeat" style="background-image: url('/img/photo-1581703234664-6ca8d94cbdbd.jpg'); background-position: center 40%;"></div>
+    <!-- Overlay (opcional) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/40 to-transparent"></div>
+
+    <div class="relative max-w-4xl mx-auto text-center px-4">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">Bienvenido a PawCare</h1>
+      <p class="mt-4 text-lg text-indigo-100">Guarderías para mascotas : Encuentra el mejor lugar para tu mascota</p>
+      <a href="./src/pages/search.html" class="inline-block mt-8 px-6 py-3 bg-white text-indigo-700 rounded-md text-sm font-medium shadow hover:bg-gray-100">Explora</a>
     </div>
   </section>
 
   <!-- Cards -->
-<div class="conatiner-stores">
-  <section class="stores-section">
-  <h2>Guarderías disponibles</h2>
-  <div id="stores-container" class="stores-grid"></div>
-</section>
-
-</div>
-
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="stores-section">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Guarderías disponibles</h2>
+      <div id="stores-container" class="stores-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Aquí tus cards dinámicas (fetch / JS) -->
+      </div>
+    </section>
+  </div>
 
   <!-- About Us -->
-  <section class="about-section">
-    <h2>Sobre nosotros : PawCare</h2>
-    <p>conecta a dueños de mascotas con cuidadores, paseadores y amantes de los animales que ofrecen atención confiable,
-      como si fueran parte de tu familia, y te ayudamos a encontrar las mejores guarderias para tu animal.</p>
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h2 class="text-2xl font-semibold text-gray-800">Sobre nosotros : PawCare</h2>
+      <p class="mt-4 text-gray-600">Conecta a dueños de mascotas con cuidadores, paseadores y amantes de los animales que ofrecen atención confiable, como si fueran parte de tu familia, y te ayudamos a encontrar las mejores guarderias para tu animal.</p>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <span class="footer-paw">🐾</span>
-      <span class="footer-copyright">© 2025</span>
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-center gap-3">
+      <span class="text-2xl">🐶</span>
+      <span class="text-sm">© 2025 PawCare</span>
     </div>
   </footer>
 
