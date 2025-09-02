@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000"; // cambia al endpoint real
+const BASE_URL = "https://proyecto-integrador-riwi-api.onrender.com"; // cambia al endpoint real
 
 // función genérica para peticiones
 async function request(path, options = {}) {
