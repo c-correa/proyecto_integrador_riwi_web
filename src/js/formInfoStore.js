@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Success message and redirect
       showMessage("Information updated successfully", "success");
-      window.location.href = "../pages/Adim.html";
+      window.location.href = "../pages/adim.html";
 
     } catch (err) {
       // Error handling

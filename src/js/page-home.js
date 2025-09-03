@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (myStore) {
           if (!myStore.is_active) {
             // store exists but inactive → redirect
-            window.location.href = "../pages/form-info-store.html";
+            window.location.href = "../pages/formInfoStore.html";
             return;
           } else {
             // store active → redirect
