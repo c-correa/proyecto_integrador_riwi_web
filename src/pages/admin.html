@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Guarderías</title>
+  <title>Admin Daycares</title>
   <meta name="organization" content="CLEMS">
   <meta name="author" content="CLEMS">
   <meta name="designer" content="CLEMS">
@@ -11,24 +11,23 @@
   <meta name="robots" content="index,follow">
   <meta name="googlebot" content="index,follow">
   <meta name="revisit-after" content="15days">
-  <script src="https://cdn.tailwindcss.com"></script> <!-- CDN para pruebas rápidas -->
+  <script src="https://cdn.tailwindcss.com"></script> 
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
   <!-- Header -->
 <header class="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
-  <h1 class="text-2xl font-bold">Panel de Administración 🐾</h1>
+  <h1 class="text-2xl font-bold">Administration Panel</h1>
   <nav class="flex gap-2">
-    <a href="/home.html" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Ir a Home</a>
-    <button id="btn-new-store" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">+ Nueva Tienda</button>
+    <a href="/home.html" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Go to Home</a>
+    <button id="btn-new-store" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">+ New Store</button>
   </nav>
 </header>
-
 
   <!-- Main -->
   <main class="p-6 max-w-6xl mx-auto">
     <section id="guarderias-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Cards renderizadas dinámicamente aquí -->
+      <!-- Cards rendered dynamically here -->
     </section>
   </main>
 
@@ -36,25 +35,25 @@
   <div id="store-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative animate-fadeIn">
       <button class="absolute top-2 right-3 text-xl text-gray-500 hover:text-red-500 modal-close">&times;</button>
-      <h2 class="text-xl font-semibold mb-4" id="store-modal-title">Nueva Tienda</h2>
+      <h2 class="text-xl font-semibold mb-4" id="store-modal-title">New Store</h2>
       <form id="store-form" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium">Nombre</label>
+          <label class="block text-sm font-medium">Name</label>
           <input type="text" id="store-name" required class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Dirección</label>
+          <label class="block text-sm font-medium">Address</label>
           <input type="text" id="store-location" class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Tipo</label>
+          <label class="block text-sm font-medium">Type</label>
           <input type="text" id="store-type" class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Descripción</label>
+          <label class="block text-sm font-medium">Description</label>
           <textarea id="store-description" class="w-full border rounded px-3 py-2 mt-1"></textarea>
         </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Guardar</button>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save</button>
       </form>
     </div>
   </div>
@@ -63,32 +62,32 @@
   <div id="branch-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative animate-fadeIn">
       <button class="absolute top-2 right-3 text-xl text-gray-500 hover:text-red-500 modal-close">&times;</button>
-      <h2 class="text-xl font-semibold mb-4" id="branch-modal-title">Nueva Sucursal</h2>
+      <h2 class="text-xl font-semibold mb-4" id="branch-modal-title">New Branch</h2>
       <form id="branch-form" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium">Nombre</label>
+          <label class="block text-sm font-medium">Name</label>
           <input type="text" id="branch-name" required class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Descripción</label>
+          <label class="block text-sm font-medium">Description</label>
           <textarea id="branch-description" class="w-full border rounded px-3 py-2 mt-1"></textarea>
         </div>
         <div>
-          <label class="block text-sm font-medium">Dirección</label>
+          <label class="block text-sm font-medium">Address</label>
           <input type="text" id="branch-address" class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Teléfono</label>
+          <label class="block text-sm font-medium">Phone</label>
           <input type="text" id="branch-phone" class="w-full border rounded px-3 py-2 mt-1"/>
         </div>
         <div>
-          <label class="block text-sm font-medium">Activa</label>
+          <label class="block text-sm font-medium">Active</label>
           <select id="branch-active" class="w-full border rounded px-3 py-2 mt-1">
-            <option value="true">Sí</option>
+            <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Guardar</button>
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Save</button>
       </form>
     </div>
   </div>
