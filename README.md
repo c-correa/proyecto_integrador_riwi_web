@@ -1,106 +1,108 @@
 # PawCare - Pet Care Services Platform
 
-Una plataforma web para servicios de cuidado de mascotas, incluyendo búsqueda de guarderías y registro de proveedores de servicios.
+Description
+This project corresponds to the **web frontend** of the RIWI Integrator Project.  
+It is developed with **Vite** as a bundler and **TailwindCSS** for style management.  
 
-## Cómo ejecutar el proyecto
+The architecture combines concepts from **SPA (Single Page Application)** and **MPA (Multi Page Application)**, allowing for hybrid development:  
+- **SPA** for dynamic interaction with the backend.  
+- **MPA** for static pages and fast navigation between views.  
 
-### Prerrequisitos
-- Node.js (versión 16 o superior)
-- npm o yarn
+---
 
-### Instalación y ejecución
+## Technologies used
+- **Vite** → Fast and lightweight development tool for frontend projects.  
+- **TailwindCSS** → Utility-based CSS framework.  
+- **JavaScript (ESM)** → Interaction logic and API consumption.  
+- **PostCSS** → Style processor.
 
-1. **Navega al directorio del proyecto:**
-   ```bash
-   cd proyecto_integrador_riwi_web
-   ```
+---
 
-2. **Instala las dependencias:**
-   ```bash
-   npm install
-   ```
+## Project structure
 
-3. **Ejecuta el servidor de desarrollo:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Abre tu navegador:**
-   El proyecto se abrirá automáticamente en `http://localhost:5173`
-
-## Estructura del proyecto
-
-```
-proyecto_integrador_riwi_web/
-├── index.html                 # Página principal
+├── public/ # Directly accessible static files
+│ └── img/ # Images and graphic resources
+│
 ├── src/
-│   ├── pages/                # Páginas HTML
-│   │   ├── search.html       # Búsqueda de servicios
-│   │   ├── login.html        # Inicio de sesión
-│   │   ├── register.html     # Registro de usuarios
-│   │   ├── register-kennel.html # Registro de guarderías
-│   │   └── users.html        # Lista de usuarios
-│   ├── styles/               # Archivos CSS
-│   │   ├── globals.css       # Estilos globales
-│   │   ├── search.css        # Estilos de búsqueda
-│   │   ├── auth.css          # Estilos de autenticación
-│   │   └── kennel-registration.css # Estilos de registro de guarderías
-│   ├── js/                   # Archivos JavaScript
-│   │   ├── main.js           # Script principal
-│   │   ├── page-search.js    # Lógica de búsqueda
-│   │   ├── page-login.js     # Lógica de login
-│   │   ├── page-register.js  # Lógica de registro
-│   │   ├── page-register-kennel.js # Lógica de registro de guarderías
-│   │   └── page-users.js     # Lógica de usuarios
-│   └── utils/
-│       └── api.js            # Utilidades de API
-└── package.json
-```
+│ ├── js/ # Logic for each page
+│ │ ├── formInfoStore.js # Store information form handling
+│ │ ├── main.js # Global initialization
+│ │ ├── page-admin.js # Logic for the administration view
+│ │ ├── page-home.js # Logic for the home page
+│ │ ├── page-login.js # Login handling
+│ │ ├── page-register.js # User registration handling
+│ │ ├── page-search.js # Search handling
+│ │ ├── page-store-detail.js# Details of a store/branch
+│ │ └── page-users.js # User management
+│ │
+│ ├── pages/ # HTML views
+│ │ ├── admin.html
+│ │ ├── formInfoStore.html
+│ │ ├── login.html
+│ │ ├── register.html
+│ │ ├── search.html
+│ │ └── storeDetail.html
+│ │
+│ └── utils/ # Reusable support functions
+│ ├── api.js # Connection to the Backend API
+│ ├── renderStoresBranch.js # Dynamic rendering of branches
+│ └── showMessages.js # Utility for displaying messages to the user
+│
+├── index.html # Home page
+├── vite.config.js # Vite configuration
+├── postcss.config.js # PostCSS configuration
+├── package.json # Dependencies and scripts
+└── package-lock.json
 
-## 🎨 Características
 
-- **Búsqueda de servicios**: Filtros avanzados para encontrar guarderías y servicios
-- **Autenticación**: Sistema de login y registro de usuarios
-- **Registro de guarderías**: Formulario completo para proveedores de servicios
-- **Diseño responsivo**: Adaptable a dispositivos móviles
-- **Integración con API**: Conectado al backend para funcionalidad completa
 
-## 🔧 Tecnologías utilizadas
+---
 
-- **HTML5**: Estructura semántica
-- **CSS3**: Estilos modernos y responsivos
-- **JavaScript ES6+**: Funcionalidad interactiva
-- **Vite**: Herramienta de desarrollo y build
-- **Tailwind CSS**: Framework de utilidades CSS
+## Installation and execution
 
-## 📱 Páginas disponibles
+Clone the repository:
 
-1. **Página principal** (`/`) - Dashboard con enlaces a todas las funcionalidades
-2. **Búsqueda** (`/src/pages/search.html`) - Buscar servicios de cuidado de mascotas
-3. **Login** (`/src/pages/login.html`) - Iniciar sesión
-4. **Registro** (`/src/pages/register.html`) - Crear cuenta de usuario
-5. **Registro de guardería** (`/src/pages/register-kennel.html`) - Registro para proveedores
-6. **Usuarios** (`/src/pages/users.html`) - Lista de usuarios registrados
+```bash```
+git clone https://github.com/c-correa/proyecto_integrador_riwi_web.git
+cd proyecto_integrador_riwi_web 
 
-## 🌐 API Backend
 
-El frontend está configurado para conectarse con el backend en `http://localhost:3000`. Asegúrate de que tu API esté ejecutándose en ese puerto.
+npm install
+npm run dev
 
-**Nota:** El frontend se ejecuta en el puerto 5173 y el backend en el puerto 3000.
 
-## Solución de problemas
 
-Si el proyecto no se ve correctamente:
 
-1. Verifica que todas las dependencias estén instaladas: `npm install`
-2. Asegúrate de que el servidor de desarrollo esté ejecutándose: `npm run dev`
-3. Verifica que no haya errores en la consola del navegador
-4. Asegúrate de que el backend esté ejecutándose en el puerto 3000
-5. Si hay conflictos de puerto, verifica que no haya otros servicios usando el puerto 5173
+##  Connection to the API
 
-## 📝 Notas de desarrollo
+This frontend requires the Backend API to be running.
+Backend repository: c-correa/proyecto_integrador_riwi_api
 
-- Las rutas están configuradas para funcionar con Vite
-- Los estilos están organizados por página para mejor mantenimiento
-- El código JavaScript está modularizado para facilitar el desarrollo
-- Se incluyen fallbacks para cuando la API no esté disponible
+Make sure you have both projects running:
+
+Backend API (proyecto_integrador_riwi_api).
+
+Web frontend (proyecto_integrador_riwi_web).
+
+This way, the views will be able to consume the endpoints correctly.
+
+
+
+## Architecture
+
+Hybrid frontend (SPA + MPA):
+
+As an SPA, it leverages JavaScript to dynamically consume data from the API (search, store details, branches).
+
+As an MPA, it uses several HTML pages to handle independent views (login, register, admin).
+
+Styles with TailwindCSS:
+Allows for fast, consistent, and highly configurable design.
+
+### API consumption:
+Centralized in src/utils/api.js, ensuring a single point for managing HTTP requests.
+
+## Conclusion
+
+This project implements a modular and flexible frontend, with a hybrid architecture that combines SPA and MPA.
+Thanks to Vite, Tailwind, and integration with the backend, it provides a solid foundation for scaling the application with new features and views.
