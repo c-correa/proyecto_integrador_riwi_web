@@ -12,6 +12,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `).join("");
   } catch (err) {
-    container.innerHTML = `<p class="text-red-600">Error cargando dueños</p>`;
+    container.innerHTML = `<p class="text-red-600">Error loading owner</p>`;
   }
 });
