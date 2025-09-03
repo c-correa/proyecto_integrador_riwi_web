@@ -5,7 +5,9 @@ export default defineConfig({
     port: 5173,
     open: true,
     host: true,
-    allowedHosts: proyecto-integrador-riwi-web-prod.onrender.com,
+    allowedHosts: [
+      'proyecto-integrador-riwi-web-prod.onrender.com'
+    ]
   },
   build: {
     outDir: 'dist',
