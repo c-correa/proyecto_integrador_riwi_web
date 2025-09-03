@@ -2,31 +2,20 @@ import { api } from "./api.js";
 
 export function renderBranches(branches = []) {
   const container = document.querySelector("#branches-container");
-
-  // Modal crear
-  const createModal = document.getElementById("branch-modal");
-  const createForm = document.getElementById("branch-form");
-
-  // Modal editar
   const editModal = document.getElementById("edit-branch-modal");
   const editForm = document.getElementById("edit-branch-form");
 
-  // Campos del modal editar
-  const inputName = document.getElementById("branch-name");
-  const inputDescription = document.getElementById("branch-description");
-  const inputAddress = document.getElementById("branch-address");
-  const inputPhone = document.getElementById("branch-phone");
-  const inputDepartment = document.getElementById("branch-department");
-  const hiddenId = document.getElementById("branch-id");
-
   container.innerHTML = "";
 
-  if (!branches || branches.length === 0) {
+  // 🔹 Asegurarse de que branches sea un array limpio (sin nulls)
+  const cleanBranches = (branches || []).filter(b => b !== null);
+
+  if (!cleanBranches.length) {
     container.innerHTML = `<p class="text-gray-500">⚠️ No tienes sucursales registradas.</p>`;
     return;
   }
 
-  branches.forEach(branch => {
+  cleanBranches.forEach(branch => {
     const card = document.createElement("div");
     card.className =
       "p-4 mb-4 bg-white shadow-lg rounded-2xl border border-gray-100 flex flex-col justify-between";
@@ -34,7 +23,7 @@ export function renderBranches(branches = []) {
     card.innerHTML = `
       <div>
         <h3 class="text-xl font-bold text-gray-800">${branch.name}</h3>
-        <p class="text-sm text-gray-500 mt-1">${branch.address}</p>
+        <p class="text-sm text-gray-500 mt-1">${branch.address || ""}</p>
         <p class="text-sm text-gray-400">${branch.phone || ""}</p>
         <p class="text-sm text-gray-400">${branch.description || ""}</p>
         <p class="mt-2 text-sm font-medium ${

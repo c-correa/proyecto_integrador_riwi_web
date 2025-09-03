@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Collect form data
       const formData = new FormData(form);
       const data = {
-        business_name: formData.get('business_name').trim(),
+        name: formData.get('name').trim(),
         tax_id: formData.get('tax_id').trim(),
         business_license: formData.get('business_license').trim(),
         main_address: formData.get('main_address').trim(),
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       // Validate required fields
-      if (!data.business_name || !data.tax_id || !data.main_address) {
+      if (!data.name || !data.tax_id || !data.main_address) {
         throw new Error("Please fill out all required fields");
       }
 

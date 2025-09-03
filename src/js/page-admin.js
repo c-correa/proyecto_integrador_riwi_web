@@ -1,5 +1,5 @@
 import { api } from "../utils/api.js";
-import { renderBranches } from "../utils/renderStores.js";
+import { renderBranches } from "../utils/renderStoresBranch.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector("#branches-container");

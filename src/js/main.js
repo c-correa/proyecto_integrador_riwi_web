@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       myStore = stores.find(store => String(store.owner_id) === String(owner));
       // Redirigir si la tienda está inactiva
       if (myStore && myStore.is_active === false) {
-        window.location.replace("../pages/formInfoStore.html");
+        window.location.replace(`../pages/formInfoStore.html?id=${myStore}`);
         return;
       }
     }
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Botón de completar perfil si la tienda no existe
       if (!myStore) {
         headerHTML += `
-          <a href="../pages/formInfoStore.html"
+          <a href="../pages/formInfoStore.html?id=${myStore.id}"
              class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
              Completar Perfil
           </a>
