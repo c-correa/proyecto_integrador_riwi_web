@@ -2,97 +2,103 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCare - Login</title>
-    <meta name="organization" content="CLEMS">
-    <meta name="author" content="CLEMS">
-    <meta name="designer" content="CLEMS">
-    <meta name="copyright" content="© 2025 CLEMS. All rights reserved">
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="15days">
-    <link rel="stylesheet" href="../styles/globals.css">
-    <link rel="stylesheet" href="../styles/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawCare - Login</title>
+  <meta name="organization" content="CLEMS">
+  <meta name="author" content="CLEMS">
+  <meta name="designer" content="CLEMS">
+  <meta name="copyright" content="© 2025 CLEMS. All rights reserved">
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+  <meta name="revisit-after" content="15days">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <div class="container">
-        <!-- Sección izquierda -->
-        <div class="left-section">
-            <div class="header">
-                <span class="page-label"></span>
-                <div class="logo-container" onclick="navigateToHome()" style="cursor: pointer;">
-                    <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo"
-                        class="logo">
-                    <h1>PawCare</h1>
-                </div>
-            </div>
-
-            <div class="main-content">
-                <h2 class="main-title">PAWCARE</h2>
-            </div>
-
-            <div class="promo-card">
-                <div class="promo-content">
-                    <div class="promo-image">
-                        <img src="../../public/img/artemisa_2.webp" alt="Mascota PawCare" class="mascot">
-                    </div>
-                    <div class="promo-text">
-                        <h3>DALE UN VISTAZO</h3>
-                        <p>Ayudamos a cuidar a tu amigo</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <div class="footer-content">
-                    <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo"
-                        class="footer-logo">
-                    <span class="copyright">© 2025</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sección derecha -->
-        <div class="right-section">
-            <div class="login-overlay">
-                <div class="login-card">
-                    <h2>Inicia sesión en PawCare!</h2>
-                    <p>Accede a tu cuenta y gestiona fácilmente tus reservas.</p>
-
-                    <form class="login-form" id="loginForm">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" placeholder="Johndoe" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <div class="password-input">
-                                <input type="password" id="password" name="password" placeholder="6541_John_doe"
-                                    required>
-                                <button type="button" class="toggle-password" onclick="togglePassword()">
-                                    <img src="../../public/img/eye-fill.svg" alt="Mostrar contraseña" class="eye-icon"
-                                        id="eye-show">
-                                    <img src="../../public/img/eye-slash.svg" alt="Ocultar contraseña"
-                                        class="eye-icon hidden" id="eye-hide">
-                                </button>
-                            </div>
-                        </div>
-                        <button type="submit" class="login-button">
-                            Iniciar sesión
-                        </button>
-                        <div class="register-link">
-                            <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<body class="min-h-screen flex flex-col md:flex-row bg-[#AECAD6]">
+  <!-- Left section -->
+  <div class="flex flex-col justify-between bg-white w-full md:w-2/5 p-6 md:p-8 order-2 md:order-1">
+    <!-- Logo -->
+    <div class="flex flex-col gap-4">
+      <span class="text-gray-600 text-sm md:text-base font-medium"></span>
+      <div onclick="navigateToHome()" class="flex items-center gap-2 cursor-pointer">
+        <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo" class="w-6 h-6">
+        <h1 class="font-bold text-lg md:text-xl text-gray-800">PawCare</h1>
+      </div>
     </div>
-    <script type="module" src="../js/main.js"></script>
-    <script type="module" src="../js/page-login.js"></script>
-</body>
 
+    <!-- Center title -->
+    <div class="flex flex-1 items-center justify-center my-6 md:my-0">
+      <h2 class="text-4xl md:text-6xl font-bold text-gray-800 text-center">PAWCARE</h2>
+    </div>
+
+    <!-- Highlighted card -->
+    <div class="bg-gradient-to-br from-[#40B0D0] to-[#2080A0] rounded-xl p-6 md:p-8 my-6 md:my-8">
+      <div class="flex items-center gap-4 md:gap-6">
+        <div class="flex-shrink-0">
+          <img src="../../public/img/artemisa_2.webp" alt="PawCare Pet"
+            class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover">
+        </div>
+        <div>
+          <h3 class="text-white text-lg md:text-xl font-bold mb-1 md:mb-2">CHECK IT OUT</h3>
+          <p class="text-white opacity-90 text-sm md:text-base">We help take care of your friend</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-auto">
+      <div class="flex items-center gap-2">
+        <span class="text-gray-600 text-sm md:text-base">© 2025</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right section -->
+  <div
+    class="flex-1 relative flex items-center justify-center bg-[url('/public/img/mobiliario-canino-parque-para-perros-queretaro.webp')] bg-cover bg-center order-1 md:order-2">
+    <div
+      class="bg-white/95 rounded-2xl p-8 md:p-12 max-w-md w-[90%] shadow-2xl backdrop-blur-md text-center my-8 md:my-0">
+      <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">Log in to PawCare!</h2>
+      <p class="text-gray-600 text-sm md:text-base mb-8">Access your account and manage your bookings easily.</p>
+
+      <form id="loginForm" class="flex flex-col gap-6 text-left">
+        <!-- Email input -->
+        <div>
+          <label for="email" class="block mb-2 font-medium text-gray-800 text-sm">Email</label>
+          <input type="text" id="email" name="email" placeholder="Johndoe" required
+            class="w-full p-3 md:p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+        </div>
+
+        <!-- Password input -->
+        <div>
+          <label for="password" class="block mb-2 font-medium text-gray-800 text-sm">Password</label>
+          <div class="relative">
+            <input type="password" id="password" name="password" placeholder="6541_John_doe" required
+              class="w-full p-3 md:p-4 pr-10 md:pr-12 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2" onclick="togglePassword()">
+              <img src="../../public/img/eye-fill.svg" alt="Show password" class="w-5 h-5" id="eye-show">
+              <img src="../../public/img/eye-slash.svg" alt="Hide password" class="w-5 h-5 hidden" id="eye-hide">
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit"
+          class="bg-blue-500 text-white py-3 md:py-4 px-6 rounded-lg text-lg font-bold cursor-pointer transition hover:bg-blue-700 mt-4">
+          Log In
+        </button>
+
+        <!-- Registration link -->
+        <div class="text-center mt-4 text-gray-700 text-sm md:text-base">
+          <p>Don’t have an account?
+            <a href="/src/pages/register.html" class="text-blue-500 font-medium hover:underline">Register here</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="../js/page-login.js"></script>
+</body>
 </html>
