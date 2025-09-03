@@ -12,37 +12,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!container) return;
 
-
   if (headerContainer) {
-  headerContainer.innerHTML = `
-    <button id="btn-explorer" 
-      class="px-3 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium hover:bg-indigo-600 shadow">
-      Ir a explorador
-    </button>
-    <button id="btn-logout" 
-      class="px-3 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 shadow">
-      Cerrar sesión
-    </button>
-  `;
+    headerContainer.innerHTML = `
+      <button id="btn-explorer" 
+        class="px-3 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium hover:bg-indigo-600 shadow">
+        Go to Explorer
+      </button>
+      <button id="btn-logout" 
+        class="px-3 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 shadow">
+        Log Out
+      </button>
+    `;
 
-  // 🔹 Ir a explorador
-  document.getElementById("btn-explorer").addEventListener("click", () => {
-    window.location.href = "index.html"; // 👈 ajusta el nombre si es distinto
-  });
+    // Go to Explorer
+    document.getElementById("btn-explorer").addEventListener("click", () => {
+      window.location.href = "index.html"; // adjust if different
+    });
 
-  // 🔹 Cerrar sesión
-  document.getElementById("btn-logout").addEventListener("click", () => {
-    localStorage.clear(); // borra todo el storage
-    window.location.href = "index.html"; // redirigir al login o página principal
-  });
-}
-
+    // Log Out
+    document.getElementById("btn-logout").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "index.html"; // redirect to login or home
+    });
+  }
 
   try {
-    // --- IDs de sesión ---
+    // --- Session IDs ---
     const ownerId = localStorage.getItem("owner_id");
 
-    // --- 1. Cargar departamentos en el select (siempre disponible) ---
+    // --- 1. Load departments into select ---
     const departments = await api.getDepartments();
     departments.forEach(dep => {
       const opt = document.createElement("option");
@@ -51,31 +49,31 @@ document.addEventListener("DOMContentLoaded", async () => {
       depSelect.appendChild(opt);
     });
 
-    // --- 2. Obtener mi store por owner ---
+    // --- 2. Get my store by owner ---
     const stores = await api.getStores();
     const myStore = stores.find(store => store.owner_id == ownerId);
 
     if (!myStore) {
-      container.innerHTML = `<p class="text-gray-500">⚠️ No tienes una tienda asociada.</p>`;
+      container.innerHTML = `<p class="text-gray-500">You don't have an associated store.</p>`;
       return;
     }
 
-    // --- 3. Obtener todas las branches de esa store ---
+    // --- 3. Get all branches for that store ---
     const branches = await api.getBranchByStore(myStore.id);
     renderBranches(branches);
 
-    // --- Abrir modal ---
+    // --- Open modal ---
     btnCreate.addEventListener("click", () => {
       modal.classList.remove("hidden");
     });
 
-    // --- Cerrar modal ---
+    // --- Close modal ---
     btnCancel.addEventListener("click", () => {
       modal.classList.add("hidden");
       form.reset();
     });
 
-    // --- Crear sucursal ---
+    // --- Create branch ---
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -83,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         name: document.getElementById("branch-name").value,
         address: document.getElementById("branch-address").value,
         department_id: document.getElementById("branch-department").value,
-        store_id: myStore.id, // 🔑 asociar a la store del owner
+        store_id: myStore.id,
       };
 
       try {
@@ -91,17 +89,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         modal.classList.add("hidden");
         form.reset();
 
-        // refrescar listado
+        // refresh branch list
         const updatedBranches = await api.getBranchByStore(myStore.id);
         renderBranches(updatedBranches);
       } catch (err) {
-        console.error("Error creando sucursal:", err);
-        alert("⚠️ No se pudo crear la sucursal.");
+        console.error("Error creating branch:", err);
+        alert("Branch could not be created.");
       }
     });
 
   } catch (err) {
     console.error("Error:", err);
-    container.innerHTML = `<p class="text-red-500">Error cargando datos.</p>`;
+    container.innerHTML = `<p class="text-red-500">Error loading data.</p>`;
   }
 });
