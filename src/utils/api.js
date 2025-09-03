@@ -1,23 +1,44 @@
-const BASE_URL = "https://proyecto-integrador-riwi-api.onrender.com"; // cambia al endpoint real
+// Configuración dinámica de URL según el entorno
+const BASE_URL = import.meta.env.DEV 
+  ? "https://proyecto-integrador-riwi-api.onrender.com"  // URL de producción para desarrollo
+  : "https://proyecto-integrador-riwi-api.onrender.com"; // URL de producción para build
 
 // función genérica para peticiones
 async function request(path, options = {}) {
   try {
-    const res = await fetch(`${BASE_URL}${path}`, {
-      headers: { "Content-Type": "application/json" },
+    const url = `${BASE_URL}${path}`;
+    console.log(`�� Making request to: ${url}`);
+    
+    const res = await fetch(url, {
+      headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
       ...options,
     });
 
-    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-    return await res.json();
+    console.log(`📡 Response status: ${res.status} ${res.statusText}`);
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`❌ API Error ${res.status}:`, errorText);
+      throw new Error(`Error ${res.status}: ${res.statusText}`);
+    }
+    
+    const data = await res.json();
+    console.log(`✅ API Success:`, data);
+    return data;
   } catch (err) {
-    console.error("API error:", err);
+    console.error("🚨 API error:", err);
     // Lanzar error con mensaje más claro para la UI
-    throw new Error("No se pudo conectar al servidor. Comprueba que el backend esté en ejecución.");
+    throw new Error(`No se pudo conectar al servidor (${BASE_URL}). Error: ${err.message}`);
   }
 }
 
 export const api = {
+  // Health check
+  healthCheck: () => request("/health"),
+  
   // Stores
   getStores: () => request("/stores"),
   getStore: (id) => request(`/stores/${id}`),
