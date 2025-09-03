@@ -2,6 +2,7 @@ import { api } from "../utils/api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.getElementById("registerForm");
+    const registerButton = document.getElementById("register-button");
     
     registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -15,20 +16,23 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         
         try {
-            const submitBtn = registerForm.querySelector(".register-button");
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = "Registering...";
-            submitBtn.disabled = true;
+            // const submitBtn = registerForm.querySelector(".register-button");
+            const originalText = registerButton.textContent;
+            registerButton.textContent = "Registering...";
+            registerButton.disabled = true;
 
             // Debug: data being sent
             console.log("Data sent:", userData);
 
-            const response = await api.createOwner(userData);
+            const {data: response} = await api.createOwner(userData);
 
             // Debug: server response if everything goes well
             console.log("Server response:", response);
-
+            
             showMessage("Registration successful! You can now sign in.", "success");
+
+            await api.createStore({owner_id: response.id})
+
 
             setTimeout(() => {
                 window.location.href = "login.html";
@@ -40,9 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Only the data sent is shown (response does not exist here if there's an error)
             showMessage("Registration failed. Please try again.", "error");
         } finally {
-            const submitBtn = registerForm.querySelector(".register-button");
-            submitBtn.textContent = "Register";
-            submitBtn.disabled = false;
+            registerButton.textContent = "Register";
+            registerButton.disabled = false;
         }
     });
 
@@ -81,7 +84,7 @@ function addRealTimeValidation() {
         });
     });
 
-    const emailInput = document.getElementById('correo');
+    const emailInput = document.getElementById('email');
     emailInput.addEventListener('blur', function() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (this.value && !emailRegex.test(this.value)) {
@@ -90,7 +93,7 @@ function addRealTimeValidation() {
         }
     });
 
-    const phoneInput = document.getElementById('telefono');
+    const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('blur', function() {
         const phoneRegex = /^[0-9+\-\s()]+$/;
         if (this.value && !phoneRegex.test(this.value)) {
