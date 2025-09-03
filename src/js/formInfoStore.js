@@ -39,14 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Success message and redirect
       showMessage("Information updated successfully", "success");
-      window.location.href = "../pages/adim.html";
-
+      window.location.href = "../pages/admin.html";
+      
     } catch (err) {
       // Error handling
       console.error(err);
       showMessage(err.message || "Error updating the information", "error");
     } finally {
       // Restore button state
+      let count = localStorage.setItem("count", 2);
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Update Information";
     }

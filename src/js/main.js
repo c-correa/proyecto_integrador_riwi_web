@@ -38,36 +38,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     const stores = await api.getStores();
     const departments = await api.getDepartments();
     let savedDep = localStorage.getItem("department_id");
+    localStorage.setItem("count", 1);
+    let count = localStorage.getItem("count");
 
     // Find the owner's store
     let myStore = null;
     if (owner) {
       myStore = stores.find(store => String(store.owner_id) === String(owner));
       // Redirect if the store is inactive
-      if (myStore && myStore.is_active === false) {
-        window.location.replace(`../pages/formInfoStore.html?id=${myStore}`);
-        return;
-      }
+      // if (myStore && myStore.is_active === false && count == 1) {
+      //   window.location.replace(`../pages/formInfoStore.html?id=${myStore.id}`);
+      //   return;
+      // }
     }
 
     let headerHTML = "";
 
     if (owner) {
-      // Complete profile button if the store does not exist
-      if (!myStore) {
-        headerHTML += `
-          <a href="../pages/formInfoStore.html?id=${myStore.id}"
-             class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
-             Complete profile
-          </a>
-        `;
-      }
-
       // Dashboard
       headerHTML += `
-        <a href="../pages/admin.html"
+        <a href=${myStore.is_active == false ? "../pages/formInfoStore.html?id=${myStore.id}":  "../pages/admin.html"} 
            class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
-           Dashboard
+          ${myStore.is_active == false ? "Complete profile" :  "Dashboard" } 
         </a>
       `;
 
