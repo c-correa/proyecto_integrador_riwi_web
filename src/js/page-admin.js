@@ -1,170 +1,107 @@
 import { api } from "../utils/api.js";
+import { renderBranches } from "../utils/renderStores.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector("#guarderias-container");
+document.addEventListener("DOMContentLoaded", async () => {
+  const container = document.querySelector("#branches-container");
+  const btnCreate = document.getElementById("btn-create-branch");
+  const modal = document.getElementById("branch-modal");
+  const form = document.getElementById("branch-form");
+  const depSelect = document.getElementById("branch-department");
+  const btnCancel = document.getElementById("btn-cancel");
+  const headerContainer = document.getElementById("header");
 
-  // --- Modal Branch ---
-  const branchModal = document.querySelector("#branch-modal");
-  const branchForm = document.querySelector("#branch-form");
-  const branchModalTitle = document.querySelector("#branch-modal-title");
+  if (!container) return;
 
-  let editingBranchId = null;
 
-  // Abrir/Cerrar modales
-  function openModal(modal) {
-    modal.classList.add("open");
-  }
-  function closeModal(modal) {
-    modal.classList.remove("open");
-  }
-  document.querySelectorAll(".modal-close").forEach((btn) =>
-    btn.addEventListener("click", () => closeModal(branchModal))
-  );
+  if (headerContainer) {
+  headerContainer.innerHTML = `
+    <button id="btn-explorer" 
+      class="px-3 py-2 rounded-lg bg-indigo-500 text-white text-sm font-medium hover:bg-indigo-600 shadow">
+      Ir a explorador
+    </button>
+    <button id="btn-logout" 
+      class="px-3 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 shadow">
+      Cerrar sesión
+    </button>
+  `;
 
-  // --- Cargar Branches ---
-  async function loadBranches() {
-    container.innerHTML = `<p class="loading">Cargando sucursales...</p>`;
-    try {
-      const ownerId = localStorage.getItem("owner_id");
-      if (!ownerId) {
-        container.innerHTML = `<p class="error">⚠️ No se encontró un owner_id</p>`;
-        return;
-      }
+  // 🔹 Ir a explorador
+  document.getElementById("btn-explorer").addEventListener("click", () => {
+    window.location.href = "index.html"; // 👈 ajusta el nombre si es distinto
+  });
 
-      // 1. Buscar stores del owner
-      const stores = await api.getStores();
-      const myStores = stores.filter((s) => String(s.owner_id) === String(ownerId));
-      console.log(myStores);
-
-      if (!myStores.length) {
-        container.innerHTML = `<p>No tienes tiendas asociadas todavía 🐾</p>`;
-        return;
-      }
-
-      // 2. Obtener branches de esas stores
-      let allBranches = [];
-for (const store of myStores) {
-  const res = await api.getBranchBySotre(store.id);
-  console.log("Branches API response:", res);
-
-  // Si devuelve un objeto simple lo convertimos en array
-  const list = Array.isArray(res) ? res : (res ? [res] : []);
-  allBranches.push(...list.map((b) => ({ ...b, store })));
+  // 🔹 Cerrar sesión
+  document.getElementById("btn-logout").addEventListener("click", () => {
+    localStorage.clear(); // borra todo el storage
+    window.location.href = "index.html"; // redirigir al login o página principal
+  });
 }
 
 
+  try {
+    // --- IDs de sesión ---
+    const ownerId = localStorage.getItem("owner_id");
 
-      if (!allBranches.length) {
-        container.innerHTML = `<p>No tienes sucursales registradas aún.</p>`;
-        return;
+    // --- 1. Cargar departamentos en el select (siempre disponible) ---
+    const departments = await api.getDepartments();
+    departments.forEach(dep => {
+      const opt = document.createElement("option");
+      opt.value = dep.id;
+      opt.textContent = dep.name;
+      depSelect.appendChild(opt);
+    });
+
+    // --- 2. Obtener mi store por owner ---
+    const stores = await api.getStores();
+    const myStore = stores.find(store => store.owner_id == ownerId);
+
+    if (!myStore) {
+      container.innerHTML = `<p class="text-gray-500">⚠️ No tienes una tienda asociada.</p>`;
+      return;
+    }
+
+    // --- 3. Obtener todas las branches de esa store ---
+    const branches = await api.getBranchByStore(myStore.id);
+    renderBranches(branches);
+
+    // --- Abrir modal ---
+    btnCreate.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+    });
+
+    // --- Cerrar modal ---
+    btnCancel.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      form.reset();
+    });
+
+    // --- Crear sucursal ---
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const newBranch = {
+        name: document.getElementById("branch-name").value,
+        address: document.getElementById("branch-address").value,
+        department_id: document.getElementById("branch-department").value,
+        store_id: myStore.id, // 🔑 asociar a la store del owner
+      };
+
+      try {
+        await api.createStoreBranch(newBranch);
+        modal.classList.add("hidden");
+        form.reset();
+
+        // refrescar listado
+        const updatedBranches = await api.getBranchByStore(myStore.id);
+        renderBranches(updatedBranches);
+      } catch (err) {
+        console.error("Error creando sucursal:", err);
+        alert("⚠️ No se pudo crear la sucursal.");
       }
+    });
 
-      console.log(allBranches);
-      
-
-      // 3. Render solo sucursales
-      container.innerHTML = allBranches
-        .map(
-          (b) => `
-          <article class="card ${b.is_active ? "active" : "inactive"}" data-id="${b.id}">
-            <div class="card-header">
-              <div class="card-img">🏪</div>
-              <div class="card-info">
-                <h2>${b.name}</h2>
-                <span class="status-badge ${b.is_active ? "active" : "inactive"}">
-                  ${b.is_active ? "Activa" : "Inactiva"}
-                </span>
-              </div>
-            </div>
-            <div class="card-body">
-              <p><strong>📍 Dirección:</strong> ${b.address || "No especificada"}</p>
-              <p><strong>📱 Teléfono:</strong> ${b.phone || "Sin teléfono"}</p>
-              <p>${b.description || "Sin descripción"}</p>
-              <p class="store-ref"><em>De la tienda: ${b.store.name}</em></p>
-
-              <div class="actions">
-                <button class="btn secondary btn-edit-branch" data-id="${b.id}">Editar</button>
-                <button class="btn ${b.is_active ? "danger" : "approve"} btn-toggle-branch" data-id="${b.id}">
-                  ${b.is_active ? "Desactivar" : "Activar"}
-                </button>
-                <button class="btn danger btn-delete-branch" data-id="${b.id}">Eliminar</button>
-              </div>
-            </div>
-          </article>
-        `
-        )
-        .join("");
-
-      bindBranchEvents();
-    } catch (err) {
-      console.error("Error cargando sucursales:", err);
-      container.innerHTML = `<p class="error">⚠️ Error al cargar las sucursales.</p>`;
-    }
+  } catch (err) {
+    console.error("Error:", err);
+    container.innerHTML = `<p class="text-red-500">Error cargando datos.</p>`;
   }
-
-  // Eventos de botones dinámicos
-  function bindBranchEvents() {
-    document.querySelectorAll(".btn-edit-branch").forEach((btn) =>
-      btn.addEventListener("click", () => openEditBranchModal(btn.dataset.id))
-    );
-    document.querySelectorAll(".btn-toggle-branch").forEach((btn) =>
-      btn.addEventListener("click", () => toggleBranch(btn.dataset.id))
-    );
-    document.querySelectorAll(".btn-delete-branch").forEach((btn) =>
-      btn.addEventListener("click", () => deleteBranch(btn.dataset.id))
-    );
-  }
-
-  // --- Branch logic ---
-  function openNewBranchModal(storeId) {
-    editingBranchId = null;
-    branchModalTitle.textContent = "Nueva Sucursal";
-    branchForm.reset();
-    branchForm.dataset.storeId = storeId;
-    openModal(branchModal);
-  }
-  async function openEditBranchModal(id) {
-    editingBranchId = id;
-    const b = await api.getBranch(id);
-    branchModalTitle.textContent = "Editar Sucursal";
-    document.querySelector("#branch-name").value = b.name || "";
-    document.querySelector("#branch-description").value = b.description || "";
-    document.querySelector("#branch-address").value = b.address || "";
-    document.querySelector("#branch-phone").value = b.phone || "";
-    document.querySelector("#branch-active").value = String(b.is_active);
-    openModal(branchModal);
-  }
-  async function toggleBranch(id) {
-    const b = await api.getBranch(id);
-    await api.updateBranch(id, { is_active: !b.is_active });
-    loadBranches();
-  }
-  async function deleteBranch(id) {
-    if (confirm("¿Eliminar esta sucursal?")) {
-      await api.deleteBranch(id);
-      loadBranches();
-    }
-  }
-
-  branchForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = {
-      name: document.querySelector("#branch-name").value,
-      description: document.querySelector("#branch-description").value,
-      address: document.querySelector("#branch-address").value,
-      phone: document.querySelector("#branch-phone").value,
-      is_active: document.querySelector("#branch-active").value === "true",
-      store_id: branchForm.dataset.storeId, // se mantiene vínculo a la store
-    };
-    if (editingBranchId) {
-      await api.updateBranch(editingBranchId, data);
-    } else {
-      await api.createBranch(data);
-    }
-    closeModal(branchModal);
-    loadBranches();
-  });
-
-  // Inicial
-  loadBranches();
 });

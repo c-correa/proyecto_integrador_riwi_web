@@ -2,96 +2,150 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Guarderías</title>
-  <meta name="organization" content="CLEMS">
-  <meta name="author" content="CLEMS">
-  <meta name="designer" content="CLEMS">
-  <meta name="copyright" content="© 2025 CLEMS. All rights reserved">
-  <meta name="robots" content="index,follow">
-  <meta name="googlebot" content="index,follow">
-  <meta name="revisit-after" content="15days">
-  <script src="https://cdn.tailwindcss.com"></script> <!-- CDN para pruebas rápidas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sucursales</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-
+<body class="bg-gray-50 text-gray-900">
+  
   <!-- Header -->
-<header class="bg-blue-600 text-white p-4 shadow-md flex justify-between items-center">
-  <h1 class="text-2xl font-bold">Panel de Administración 🐾</h1>
-  <nav class="flex gap-2">
-    <a href="/home.html" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Ir a Home</a>
-    <button id="btn-new-store" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">+ Nueva Tienda</button>
-  </nav>
-</header>
-
+  <header class="w-full bg-white shadow px-6 py-4 flex items-center justify-between">
+    <h1 class="text-xl font-bold text-indigo-600">Sucursales</h1>
+    <div id="header" class="flex items-center space-x-4">
+      <!-- Aquí JS renderiza los botones (login/dashboard) -->
+    </div>
+  </header>
 
   <!-- Main -->
-  <main class="p-6 max-w-6xl mx-auto">
-    <section id="guarderias-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Cards renderizadas dinámicamente aquí -->
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    
+    <!-- Botón para crear sucursal -->
+    <div class="flex justify-end mb-4">
+      <button id="btn-create-branch"
+        class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 shadow">
+        + Crear sucursal
+      </button>
+    </div>
+
+    <!-- Modal (crear sucursal) -->
+    <div id="branch-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+        <h2 class="text-lg font-bold text-gray-700 mb-4">Crear nueva sucursal</h2>
+        
+        <form id="branch-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Nombre</label>
+            <input type="text" id="branch-name" required 
+                   class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Dirección</label>
+            <input type="text" id="branch-address" required 
+                   class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600">Departamento</label>
+            <select id="branch-department" required
+                    class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+              <!-- JS llenará options -->
+            </select>
+          </div>
+
+          <div class="flex justify-end space-x-2 mt-4">
+            <button type="button" id="btn-cancel"
+              class="px-3 py-2 text-sm rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100">Cancelar</button>
+            <button type="submit"
+              class="px-4 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+<!-- Modal editar sucursal -->
+<div id="edit-branch-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-xl font-semibold mb-4">Editar Sucursal</h2>
+    <form id="edit-branch-form">
+      <!-- ID oculto -->
+      <input type="hidden" id="branch-id" />
+
+      <!-- Nombre -->
+      <div class="mb-4">
+        <label for="branch-name" class="block text-sm font-medium text-gray-700">Nombre</label>
+        <input
+          type="text"
+          id="branch-name"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          required
+        />
+      </div>
+
+      <!-- Descripción -->
+      <div class="mb-4">
+        <label for="branch-description" class="block text-sm font-medium text-gray-700">Descripción</label>
+        <textarea
+          id="branch-description"
+          rows="2"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        ></textarea>
+      </div>
+
+      <!-- Dirección -->
+      <div class="mb-4">
+        <label for="branch-address" class="block text-sm font-medium text-gray-700">Dirección</label>
+        <input
+          type="text"
+          id="branch-address"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          required
+        />
+      </div>
+
+      <!-- Teléfono -->
+      <div class="mb-4">
+        <label for="branch-phone" class="block text-sm font-medium text-gray-700">Teléfono</label>
+        <input
+          type="text"
+          id="branch-phone"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+          placeholder="+57 300 000 0000"
+        />
+      </div>
+
+      <!-- Departamento -->
+      <div class="mb-4">
+        <label for="branch-department" class="block text-sm font-medium text-gray-700">Departamento</label>
+        <select
+          id="branch-department"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+        >
+          <!-- Opciones cargadas dinámicamente -->
+        </select>
+      </div>
+
+      <div class="flex justify-end">
+        <button
+          type="button"
+          id="close-edit-branch"
+          class="mr-2 px-4 py-2 bg-gray-300 rounded-md"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <!-- Lista de sucursales -->
+    <section id="branches-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-6">
+      <!-- Aquí se listan las sucursales -->
     </section>
   </main>
-
-  <!-- Modal Store -->
-  <div id="store-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative animate-fadeIn">
-      <button class="absolute top-2 right-3 text-xl text-gray-500 hover:text-red-500 modal-close">&times;</button>
-      <h2 class="text-xl font-semibold mb-4" id="store-modal-title">Nueva Tienda</h2>
-      <form id="store-form" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Nombre</label>
-          <input type="text" id="store-name" required class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Dirección</label>
-          <input type="text" id="store-location" class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Tipo</label>
-          <input type="text" id="store-type" class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Descripción</label>
-          <textarea id="store-description" class="w-full border rounded px-3 py-2 mt-1"></textarea>
-        </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Guardar</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal Branch -->
-  <div id="branch-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative animate-fadeIn">
-      <button class="absolute top-2 right-3 text-xl text-gray-500 hover:text-red-500 modal-close">&times;</button>
-      <h2 class="text-xl font-semibold mb-4" id="branch-modal-title">Nueva Sucursal</h2>
-      <form id="branch-form" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Nombre</label>
-          <input type="text" id="branch-name" required class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Descripción</label>
-          <textarea id="branch-description" class="w-full border rounded px-3 py-2 mt-1"></textarea>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Dirección</label>
-          <input type="text" id="branch-address" class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Teléfono</label>
-          <input type="text" id="branch-phone" class="w-full border rounded px-3 py-2 mt-1"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Activa</label>
-          <select id="branch-active" class="w-full border rounded px-3 py-2 mt-1">
-            <option value="true">Sí</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Guardar</button>
-      </form>
-    </div>
-  </div>
 
   <script type="module" src="../js/page-admin.js"></script>
 </body>

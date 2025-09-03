@@ -35,12 +35,17 @@ export const api = {
   // Store branches
   getBranches: () => request("/store-branches"),
   getBranch: (id) => request(`/store-branches/${id}`),
-  getBranchBySotre: (id) => request(`/store-branches/by/${id}`),
-  updateBranche: (id, data) =>   // 👈 NUEVO
+  getBranchByStore: (id) => request(`/store-branches/by/${id}`),
+  updateBranch: (id, data) =>   // 👈 NUEVO
     request(`/store-branches/${id}`, {
       method: "PATCH", // o PATCH según tu backend
       body: JSON.stringify(data),
     }),
+createStoreBranch: (data) => 
+  request("/store-branches", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
 
 
   // Publications
@@ -67,9 +72,6 @@ export const api = {
     body: JSON.stringify(filters),
   }),
 
-  // Kennel registration
-  registerKennel: (data) => request("/kennels/register", {
-    method: "POST",
-    body: JSON.stringify(data),
-  }),
+   getDepartments: () => request("/departments"),
+
 };
