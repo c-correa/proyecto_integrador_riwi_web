@@ -89,11 +89,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       // Views for visint
       headerHTML += `
-        <a href="../pages/login.html"
+        <a href="../../src/pages/login.html"
            class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
            Iniciar sesión
         </a>
-        <a href="../pages/register.html"
+        <a href="../../src/pages/register.html"
            class="px-3 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">
            Inscribete
         </a>
