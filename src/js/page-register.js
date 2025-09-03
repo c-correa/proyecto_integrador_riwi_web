@@ -8,27 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const formData = new FormData(registerForm);
         const userData = {
-            full_name: formData.get("usuario"),
-            email: formData.get("correo"),
-            phone: formData.get("telefono"),
+            full_name: formData.get("user"),
+            email: formData.get("email"),
+            phone: formData.get("phone"),
             password: formData.get("password")
         };
         
         try {
             const submitBtn = registerForm.querySelector(".register-button");
             const originalText = submitBtn.textContent;
-            submitBtn.textContent = "Registrando...";
+            submitBtn.textContent = "Registering...";
             submitBtn.disabled = true;
 
-            // Debug: lo que se envía
-            console.log("Datos enviados:", userData);
+            // Debug: data being sent
+            console.log("Data sent:", userData);
 
             const response = await api.createOwner(userData);
 
-            // Debug: lo que responde el servidor si todo sale bien
-            console.log("Respuesta del servidor:", response);
+            // Debug: server response if everything goes well
+            console.log("Server response:", response);
 
-            showMessage("¡Registro exitoso! Ya puedes iniciar sesión.", "success");
+            showMessage("Registration successful! You can now sign in.", "success");
 
             setTimeout(() => {
                 window.location.href = "login.html";
@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error("Registration error:", error);
 
-            // Solo se muestra los datos enviados (response no existe aquí si hay error)
-            showMessage("Error al registrarse. Intenta nuevamente.", "error");
+            // Only the data sent is shown (response does not exist here if there's an error)
+            showMessage("Registration failed. Please try again.", "error");
         } finally {
             const submitBtn = registerForm.querySelector(".register-button");
-            submitBtn.textContent = "Registrarse";
+            submitBtn.textContent = "Register";
             submitBtn.disabled = false;
         }
     });
@@ -86,7 +86,7 @@ function addRealTimeValidation() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (this.value && !emailRegex.test(this.value)) {
             this.classList.add('invalid');
-            showMessage('Por favor, ingresa un correo electrónico válido.', 'error');
+            showMessage('Please enter a valid email address.', 'error');
         }
     });
 
@@ -95,7 +95,7 @@ function addRealTimeValidation() {
         const phoneRegex = /^[0-9+\-\s()]+$/;
         if (this.value && !phoneRegex.test(this.value)) {
             this.classList.add('invalid');
-            showMessage('Por favor, ingresa un número de teléfono válido.', 'error');
+            showMessage('Please enter a valid phone number.', 'error');
         }
     });
 }

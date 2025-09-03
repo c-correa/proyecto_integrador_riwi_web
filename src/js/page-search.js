@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         await Promise.all([loadFilters(), loadServices()]);
     } catch (err) {
-        console.error("Error inicial cargando filtros/servicios:", err);
+        console.error("Initial error loading filters/services:", err);
         const servicesContent = document.getElementById("servicesContent");
-        if (servicesContent) servicesContent.innerHTML = '<div class="loading">No fue posible conectar con el servidor.</div>';
-        showMessage("No se pudo conectar con el servidor. Comprueba que el backend esté iniciado.", "error");
+        if (servicesContent) servicesContent.innerHTML = '<div class="loading">Could not connect to the server.</div>';
+        showMessage("Could not connect to the server. Please check if the backend is running.", "error");
     }
 
     if (searchBtn) {
@@ -49,10 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         maxPriceSlider.addEventListener("input", updatePriceRange);
         updatePriceRange();
     }
-
-    // window.navigateToHome = () => {
-    //     window.location.href = "../../index.html";
-    // };
 });
 
 async function loadFilters() {
@@ -62,7 +58,7 @@ async function loadFilters() {
     try {
         const stores = await api.getStores();
         if (!Array.isArray(stores) || stores.length === 0) {
-            sidebar.insertAdjacentHTML("beforeend", `<p class="loading">No hay filtros disponibles</p>`);
+            sidebar.insertAdjacentHTML("beforeend", `<p class="loading">No filters available</p>`);
             return;
         }
 
@@ -124,8 +120,8 @@ async function loadFilters() {
 
     } catch (err) {
         console.error(err);
-        showMessage("No se pudieron cargar filtros", "error");
-        sidebar.insertAdjacentHTML("beforeend", `<p class="loading">Error cargando filtros</p>`);
+        showMessage("Could not load filters", "error");
+        sidebar.insertAdjacentHTML("beforeend", `<p class="loading">Error loading filters</p>`);
     }
 }
 
@@ -163,13 +159,13 @@ async function loadServices() {
     const servicesContent = document.getElementById("servicesContent");
     if (!servicesContent) return;
     try {
-        servicesContent.innerHTML = '<div class="loading">Cargando servicios...</div>';
+        servicesContent.innerHTML = '<div class="loading">Loading services...</div>';
         const services = await api.getStores();
         displayServices(services);
     } catch (error) {
         console.error(error);
-        servicesContent.innerHTML = '<div class="loading">No se pudieron cargar los servicios.</div>';
-        showMessage("Error al cargar servicios", "error");
+        servicesContent.innerHTML = '<div class="loading">Could not load services.</div>';
+        showMessage("Error loading services", "error");
     }
 }
 
@@ -193,13 +189,11 @@ async function performSearch() {
     };
 
     try {
-        servicesContent.innerHTML = '<div class="loading">Buscando servicios...</div>';
+        servicesContent.innerHTML = '<div class="loading">Searching services...</div>';
 
-        // Fallback: obtener todos y filtrar en cliente si /search no existe
         const all = await api.getStores();
 
         const results = (Array.isArray(all) ? all : []).filter(s => {
-            // ejemplo simple: filtrar por country/capacity/animalType y precio si existieran
             if (filters.checks.length) {
                 for (const c of filters.checks) {
                     if (c.group === 'country' && s.country !== c.value) return false;
@@ -210,8 +204,6 @@ async function performSearch() {
                     }
                 }
             }
-            // tags (opcional) - si tus tags mappean a propiedades, adaptarlo
-            // precio (si la propiedad price existe)
             if (s.price != null) {
                 if (s.price < filters.priceRange.min || s.price > filters.priceRange.max) return false;
             }
@@ -219,15 +211,15 @@ async function performSearch() {
         });
 
         if (!results || results.length === 0) {
-            servicesContent.innerHTML = '<div class="loading">No se encontraron servicios.</div>';
-            showMessage("No se encontraron servicios con esos filtros", "info");
+            servicesContent.innerHTML = '<div class="loading">No services found.</div>';
+            showMessage("No services match your filters", "info");
             return;
         }
         displayServices(results);
     } catch (error) {
         console.error(error);
-        servicesContent.innerHTML = '<div class="loading">Error al buscar servicios.</div>';
-        showMessage("Error al realizar la búsqueda", "error");
+        servicesContent.innerHTML = '<div class="loading">Error while searching services.</div>';
+        showMessage("Error performing search", "error");
     }
 }
 
@@ -236,24 +228,24 @@ function displayServices(services) {
     if (!servicesContent) return;
 
     if (!services || services.length === 0) {
-        servicesContent.innerHTML = '<div class="loading">No se encontraron servicios</div>';
+        servicesContent.innerHTML = '<div class="loading">No services found</div>';
         return;
     }
 
     const servicesHTML = services.map(service => `
         <div class="service-card" data-id="${service.id || ''}">
             <div class="service-header">
-                <img src="${service.logo || '../public/img/default-logo.svg'}" alt="${service.name || 'Proveedor'}" class="provider-avatar">
+                <img src="${service.logo || '../public/img/default-logo.svg'}" alt="${service.name || 'Provider'}" class="provider-avatar">
                 <div class="service-info">
-                    <h2>${service.name || 'Nombre del servicio'}</h2>
+                    <h2>${service.name || 'Service name'}</h2>
                     <p>${service.address || service.description || ''}</p>
                     <div class="service-meta">
                         ${service.country ? `<span class="meta-item">${service.country}</span>` : ''}
-                        ${service.capacity ? `<span class="meta-item">Capacidad: ${service.capacity}</span>` : ''}
+                        ${service.capacity ? `<span class="meta-item">Capacity: ${service.capacity}</span>` : ''}
                         ${service.animalType ? `<span class="meta-item">${Array.isArray(service.animalType) ? service.animalType.join(', ') : service.animalType}</span>` : ''}
                     </div>
                     <div class="service-actions">
-                        <button class="contact-btn" data-id="${service.id || ''}">Contactar</button>
+                        <button class="contact-btn" data-id="${service.id || ''}">Contact</button>
                     </div>
                 </div>
             </div>
@@ -265,7 +257,7 @@ function displayServices(services) {
     servicesContent.querySelectorAll(".contact-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const id = e.currentTarget.dataset.id;
-            showMessage(`Iniciar contacto con servicio ${id}`, "success");
+            showMessage(`Starting contact with service ${id}`, "success");
         });
     });
 }

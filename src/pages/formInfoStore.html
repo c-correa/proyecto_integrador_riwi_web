@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -11,82 +11,82 @@
   <meta name="robots" content="index,follow">
   <meta name="googlebot" content="index,follow">
   <meta name="revisit-after" content="15days">
-  <title>Actualizar Información Legal - Guardería Canina</title>
+  <title>Update Legal Information - Dog Daycare</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body class="bg-gray-50 min-h-screen flex items-center justify-center font-sans">
   <main class="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-    <!-- Título -->
+    <!-- Title -->
     <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-      Actualizar Información Legal
+      Update Legal Information
     </h1>
 
-    <!-- Formulario -->
+    <!-- Form -->
     <form id="update-store-form" class="space-y-5">
-      <!-- Razón social -->
+      <!-- Business Name -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Razón Social / Nombre Comercial *
+          Legal/Trade Name *
         </label>
         <input type="text" name="business_name" required
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- NIT -->
+      <!-- Tax ID -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Número de Identificación (NIT, CIF, RFC, etc.) *
+          Identification Number (NIT, CIF, RFC, etc.) *
         </label>
         <input type="text" name="tax_id" required
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- Licencia -->
+      <!-- Business License -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Licencia de Funcionamiento / Registro Mercantil
+          Business License / Commercial Registration
         </label>
         <input type="text" name="business_license"
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- Dirección -->
+      <!-- Address -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Dirección Física *
+          Physical Address *
         </label>
         <input type="text" name="main_address" required
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- Teléfono -->
+      <!-- Phone -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Teléfono Oficial
+          Official Phone
         </label>
         <input type="text" name="official_phone"
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- Correo -->
+      <!-- Email -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">
-          Correo Electrónico Oficial
+          Official Email
         </label>
         <input type="email" name="official_email"
           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none">
       </div>
 
-      <!-- Botón -->
+      <!-- Button -->
       <button type="submit" id="submit-btn"
         class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-md">
-        Actualizar Información
+        Update Information
       </button>
     </form>
 
-    <!-- Mensaje -->
+    <!-- Message -->
     <div id="message-container" class="mt-6 text-center text-sm"></div>
   </main>
 

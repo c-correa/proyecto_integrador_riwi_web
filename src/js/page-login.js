@@ -11,19 +11,19 @@ loginForm.addEventListener("submit", async (e) => {
     };
     
     try {
-        console.log("Intentando hacer login con:", credentials);
+        console.log("Trying to log in with:", credentials);
         
         // Loading state
         const submitBtn = loginForm.querySelector(".login-button");
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = "Iniciando sesión...";
+        submitBtn.textContent = "Signing in...";
         submitBtn.disabled = true;
         
-        // Petición real al API
+        // Real API request
         const response = await api.login(credentials);
-        console.log("Respuesta del login:", response);
+        console.log("Login response:", response);
         
-        // Guardar tokens en localStorage
+        // Save tokens in localStorage
         if (response.access_token) {
             localStorage.setItem("access_token", response.access_token);
         }
@@ -31,26 +31,41 @@ loginForm.addEventListener("submit", async (e) => {
             localStorage.setItem("refresh_token", response.refresh_token);
         }
 
-        // (Opcional: guardar owner_id si lo usas en la app)
+        // (Optional: save owner_id if you use it in the app)
         if (response.owner_id) {
             localStorage.setItem("owner_id", response.owner_id);
         }
 
-        // Mostrar éxito
-        showMessage("¡Inicio de sesión exitoso!", "success");
+        // Show success
+        showMessage("Login successful!", "success");
 
-        // Redirigir al profile
+        // Redirect to profile
         setTimeout(() => {
             window.location.href = "./profile.html";
         }, 1500);
 
     } catch (error) {
         console.error("Login error:", error);
-        showMessage("Error al iniciar sesión. Verifica tus credenciales.", "error");
+        showMessage("Login failed. Please check your credentials.", "error");
     } finally {
-        // Resetear botón
+        // Reset button
         const submitBtn = loginForm.querySelector(".login-button");
-        submitBtn.textContent = "Iniciar sesión";
+        submitBtn.textContent = "Sign in";
         submitBtn.disabled = false;
     }
 });
+window.togglePassword = function() {
+    const passwordInput = document.getElementById('password');
+    const eyeShow = document.getElementById('eye-show');
+    const eyeHide = document.getElementById('eye-hide');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeShow.classList.add('hidden');
+        eyeHide.classList.remove('hidden');
+    } else {
+        passwordInput.type = 'password';
+        eyeShow.classList.remove('hidden');
+        eyeHide.classList.add('hidden');
+    }
+};

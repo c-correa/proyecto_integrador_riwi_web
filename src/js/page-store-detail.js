@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(branches);
 
     if (!branches.length) {
-      branchesContainer.innerHTML = `<p>No branches registered for this store 🐾</p>`;
+      branchesContainer.innerHTML = `<p>No branches registered for this store </p>`;
       return;
     }
 
@@ -132,6 +132,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
   } catch (err) {
     console.error(err);
-    container.innerHTML = `<p class="error">⚠️ Error loading store information</p>`;
+    container.innerHTML = `<p class="error">Error loading store information</p>`;
   }
 });

@@ -21,7 +21,7 @@
         <header class="flex flex-col gap-4">
             <span class="text-gray-600 text-base font-medium"></span>
             <div class="flex items-center gap-2 cursor-pointer" onclick="navigateToHome()">
-                <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.png" alt="PawCare Logo"
+                <img src="../../public/img/file_00000000749861f89afa72857b0d7f69.webp" alt="PawCare Logo"
                     class="w-6 h-6">
                 <h1 class="font-bold text-xl text-gray-800">PawCare</h1>
             </div>
@@ -61,24 +61,24 @@
                 <form class="flex flex-col gap-6 text-left" id="registerForm">
                     <!-- Username -->
                     <div>
-                        <label for="usuario" class="block mb-2 font-medium text-gray-800 text-sm">Username</label>
-                        <input type="text" id="usuario" name="usuario" placeholder="Johndoe"
+                        <label for="user" class="block mb-2 font-medium text-gray-800 text-sm">Username</label>
+                        <input type="text" id="user" name="user" placeholder="Johndoe"
                             class="w-full p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white"
                             required>
                     </div>
 
                     <!-- Email -->
                     <div>
-                        <label for="correo" class="block mb-2 font-medium text-gray-800 text-sm">Email</label>
-                        <input type="email" id="correo" name="correo" placeholder="johndoe@gmail.com"
+                        <label for="email" class="block mb-2 font-medium text-gray-800 text-sm">Email</label>
+                        <input type="email" id="email" name="email" placeholder="johndoe@gmail.com"
                             class="w-full p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white"
                             required>
                     </div>
 
                     <!-- Phone -->
                     <div>
-                        <label for="telefono" class="block mb-2 font-medium text-gray-800 text-sm">Phone</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="(259) 880-0100"
+                        <label for="phone" class="block mb-2 font-medium text-gray-800 text-sm">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(259) 880-0100"
                             class="w-full p-4 border border-gray-300 rounded-lg text-base focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white"
                             required>
                     </div>
@@ -107,6 +107,12 @@
                         class="bg-blue-500 text-white py-4 px-6 rounded-lg text-lg font-bold cursor-pointer transition hover:bg-blue-700">
                         Register
                     </button>
+
+                    <div class="text-center mt-4 text-gray-700 text-sm md:text-base">
+          <p>Have an account?
+            <a href="login.html" class="text-blue-500 font-medium hover:underline">Login here</a>
+          </p>
+        </div>
                 </form>
             </section>
         </div>

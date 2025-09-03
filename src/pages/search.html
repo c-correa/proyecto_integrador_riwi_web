@@ -82,7 +82,7 @@
     searchBtn.addEventListener("click", async () => {
       const department = select.value;
       if (!department) {
-        results.innerHTML = "<p class='text-red-600 font-medium'>⚠️ Select a department first</p>";
+        results.innerHTML = "<p class='text-red-600 font-medium'> Select a department first</p>";
         return;
       }
 
@@ -99,7 +99,7 @@
         loading.textContent = "";
       } catch (error) {
         console.error("Error searching services:", error);
-        results.innerHTML = "<p class='text-red-600 font-medium'>❌ Error loading services.</p>";
+        results.innerHTML = "<p class='text-red-600 font-medium'>Error loading services.</p>";
       }
     });
 
