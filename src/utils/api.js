@@ -36,6 +36,12 @@ export const api = {
   getBranches: () => request("/store-branches"),
   getBranch: (id) => request(`/store-branches/${id}`),
   getBranchBySotre: (id) => request(`/store-branches/by/${id}`),
+  updateBranche: (id, data) =>   // 👈 NUEVO
+    request(`/store-branches/${id}`, {
+      method: "PATCH", // o PATCH según tu backend
+      body: JSON.stringify(data),
+    }),
+
 
   // Publications
   getPublications: () => request("/publications"),

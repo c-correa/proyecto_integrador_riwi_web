@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Tienda</title>
+  <link rel="stylesheet" href="../styles/page-store-detail.css">
+</head>
+<body>
+
+  <main class="store-detail">
+    <!-- Botón de retorno -->
+    <button id="back-btn" class="back-btn" onclick="history.back()">
+      <span class="back-icon">←</span>
+      Volver
+    </button>
+
+    <!-- Aquí va la info de la tienda -->
+    <div id="store-detail-container">
+      <p>Cargando información...</p>
+    </div>
+
+    <!-- Aquí se listarán las sucursales -->
+    <div id="branches-container">
+      <p>Buscando sucursales...</p>
+    </div>
+  </main>
+
+  <script type="module" src="../js/page-store-detail.js"></script>
+</body>
+</html>
