@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Cargar Branches ---
   async function loadBranches() {
-    container.innerHTML = `<p class="loading">Cargando sucursales...</p>`;
+    container.innerHTML = `<p class="loading">Loading branchs...</p>`;
     try {
       const ownerId = localStorage.getItem("owner_id");
       if (!ownerId) {
-        container.innerHTML = `<p class="error">⚠️ No se encontró un owner_id</p>`;
+        container.innerHTML = `<p class="error"> No result found owner_id</p>`;
         return;
       }
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(myStores);
 
       if (!myStores.length) {
-        container.innerHTML = `<p>No tienes tiendas asociadas todavía 🐾</p>`;
+        container.innerHTML = `<p>You don't have any partner stores yet.</p>`;
         return;
       }
 
@@ -55,7 +55,7 @@ for (const store of myStores) {
 
 
       if (!allBranches.length) {
-        container.innerHTML = `<p>No tienes sucursales registradas aún.</p>`;
+        container.innerHTML = `<p>You do not have any branches registered yet..</p>`;
         return;
       }
 
@@ -68,26 +68,25 @@ for (const store of myStores) {
           (b) => `
           <article class="card ${b.is_active ? "active" : "inactive"}" data-id="${b.id}">
             <div class="card-header">
-              <div class="card-img">🏪</div>
               <div class="card-info">
                 <h2>${b.name}</h2>
                 <span class="status-badge ${b.is_active ? "active" : "inactive"}">
-                  ${b.is_active ? "Activa" : "Inactiva"}
+                  ${b.is_active ? "active" : "inactive"}
                 </span>
               </div>
             </div>
             <div class="card-body">
-              <p><strong>📍 Dirección:</strong> ${b.address || "No especificada"}</p>
-              <p><strong>📱 Teléfono:</strong> ${b.phone || "Sin teléfono"}</p>
+              <p><strong> Address:</strong> ${b.address || "No address"}</p>
+              <p><strong> Phone:</strong> ${b.phone || "No phone"}</p>
               <p>${b.description || "Sin descripción"}</p>
-              <p class="store-ref"><em>De la tienda: ${b.store.name}</em></p>
+              <p class="store-ref"><em>From the store: ${b.store.name}</em></p>
 
               <div class="actions">
-                <button class="btn secondary btn-edit-branch" data-id="${b.id}">Editar</button>
+                <button class="btn secondary btn-edit-branch" data-id="${b.id}">Edit</button>
                 <button class="btn ${b.is_active ? "danger" : "approve"} btn-toggle-branch" data-id="${b.id}">
-                  ${b.is_active ? "Desactivar" : "Activar"}
+                  ${b.is_active ? "Deactivate" : "Activate"}
                 </button>
-                <button class="btn danger btn-delete-branch" data-id="${b.id}">Eliminar</button>
+                <button class="btn danger btn-delete-branch" data-id="${b.id}">Deleted</button>
               </div>
             </div>
           </article>
@@ -97,8 +96,8 @@ for (const store of myStores) {
 
       bindBranchEvents();
     } catch (err) {
-      console.error("Error cargando sucursales:", err);
-      container.innerHTML = `<p class="error">⚠️ Error al cargar las sucursales.</p>`;
+      console.error("Error loading branches", err);
+      container.innerHTML = `<p class="error"> Error loading branches.</p>`;
     }
   }
 
@@ -118,7 +117,7 @@ for (const store of myStores) {
   // --- Branch logic ---
   function openNewBranchModal(storeId) {
     editingBranchId = null;
-    branchModalTitle.textContent = "Nueva Sucursal";
+    branchModalTitle.textContent = "New branch";
     branchForm.reset();
     branchForm.dataset.storeId = storeId;
     openModal(branchModal);
@@ -140,7 +139,7 @@ for (const store of myStores) {
     loadBranches();
   }
   async function deleteBranch(id) {
-    if (confirm("¿Eliminar esta sucursal?")) {
+    if (confirm("Delete this branch?")) {
       await api.deleteBranch(id);
       loadBranches();
     }
@@ -154,7 +153,7 @@ for (const store of myStores) {
       address: document.querySelector("#branch-address").value,
       phone: document.querySelector("#branch-phone").value,
       is_active: document.querySelector("#branch-active").value === "true",
-      store_id: branchForm.dataset.storeId, // se mantiene vínculo a la store
+      store_id: branchForm.dataset.storeId, 
     };
     if (editingBranchId) {
       await api.updateBranch(editingBranchId, data);

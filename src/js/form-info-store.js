@@ -8,20 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const storeId = params.get('id');
 
-  // if (!storeId) {
-  //   showMessage('No se encontró el ID de la guardería', 'error');
-  //   form.style.display = "none";
-  //   return;
-  // }
-
+  // Handle form submit
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Disable button and show loading state
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="loading">Actualizando...</span>';
+    submitBtn.innerHTML = '<span class="loading">Updating...</span>';
     messageContainer.innerHTML = '';
 
     try {
+      // Collect form data
       const formData = new FormData(form);
       const data = {
         business_name: formData.get('business_name').trim(),
@@ -31,30 +28,32 @@ document.addEventListener('DOMContentLoaded', () => {
         official_phone: formData.get('official_phone').trim(),
         official_email: formData.get('official_email').trim(),
       };
-      console.log(12)
 
+      // Validate required fields
       if (!data.business_name || !data.tax_id || !data.main_address) {
-        throw new Error("Por favor complete todos los campos obligatorios");
+        throw new Error("Please fill out all required fields");
       }
 
+      // Update store through API
       await api.updateStore(storeId, data);
 
-      showMessage("✅ Información actualizada correctamente", "success");
-
-      window.location.href = "../pages/Adim.html"
+      // Success message and redirect
+      showMessage("Information updated successfully", "success");
+      window.location.href = "../pages/Adim.html";
 
     } catch (err) {
+      // Error handling
       console.error(err);
-      showMessage(err.message || "❌ Error actualizando la información", "error");
+      showMessage(err.message || "Error updating the information", "error");
     } finally {
+      // Restore button state
       submitBtn.disabled = false;
-      submitBtn.innerHTML = "Actualizar Información";
+      submitBtn.innerHTML = "Update Information";
     }
   });
 
+  // Display message in container
   function showMessage(msg, type) {
     messageContainer.innerHTML = `<div class="message ${type}">${msg}</div>`;
   }
-
-  
 });
