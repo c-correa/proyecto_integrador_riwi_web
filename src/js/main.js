@@ -16,16 +16,16 @@ async function renderStores(departmentId = null) {
       ? stores.map(store => `
         <div class="store-card">
           <h3>${store.name}</h3>
-          <p>${store.description || "Sin descripción disponible"}</p>
-          <p><strong>Dirección:</strong> ${store.address || "No especificada"}</p>
-          <a href="../src/pages/storeDetail.html?id=${store.id}" class="btn-detalle">Ver más</a>
+          <p>${store.description || "No description available"}</p>
+          <p><strong>Address:</strong> ${store.address || "Not specified"}</p>
+          <a href="../src/pages/storeDetail.html?id=${store.id}" class="btn-detalle">See more</a>
         </div>
       `).join("")
-      : `<p>No hay guarderías registradas todavía 🐾</p>`;
+      : `<p>There are no registered daycare centers yet. </p>`;
 
   } catch (err) {
-    console.error("Error renderizando guarderías:", err);
-    container.innerHTML = `<p class="error">⚠️ No se pudieron cargar las guarderías. Intenta más tarde.</p>`;
+    console.error("Error rendering nurseries:", err);
+    container.innerHTML = `<p class="error">The daycare centers could not be loaded. Please try again later.</p>`;
   }
 }
 
@@ -39,27 +39,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const departments = await api.getDepartments();
     let savedDep = localStorage.getItem("department_id");
 
-    // 🔹 Buscar la tienda del owner
+    // Find the owner's store
     let myStore = null;
     if (owner) {
       myStore = stores.find(store => String(store.owner_id) === String(owner));
-      // Redirigir si la tienda está inactiva
+      // Redirect if the store is inactive
       if (myStore && myStore.is_active === false) {
         window.location.replace(`../pages/formInfoStore.html?id=${myStore}`);
         return;
       }
     }
 
-    // 🔹 Construir header dinámico
     let headerHTML = "";
 
     if (owner) {
-      // Botón de completar perfil si la tienda no existe
+      // Complete profile button if the store does not exist
       if (!myStore) {
         headerHTML += `
           <a href="../pages/formInfoStore.html?id=${myStore.id}"
              class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
-             Completar Perfil
+             Complete profile
           </a>
         `;
       }
@@ -72,15 +71,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         </a>
       `;
 
-      // Explorar
+      // Explorer
       headerHTML += `
         <a href="../index.html"
            class="px-3 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700">
-           Explorar
+           Explorer
         </a>
       `;
 
-      // Cerrar sesión
+      // Log out
       headerHTML += `
         <button id="btn-logout"
                 class="px-3 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600">
@@ -88,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </button>
       `;
     } else {
-      // Para visitantes
+      // Views for visint
       headerHTML += `
         <a href="../pages/login.html"
            class="px-3 py-2 rounded-md text-sm font-medium text-indigo-600 hover:bg-indigo-50">
@@ -103,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     header.innerHTML = headerHTML;
 
-    // 🔹 Evento de cerrar sesión
+    // Function for log out
     const logoutBtn = document.getElementById("btn-logout");
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
@@ -112,18 +111,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    // 🔹 Renderizado inicial de stores
+    //  Initial rendering of stores
     const initialStores = savedDep
       ? stores.filter(s => String(s.department_id) === String(savedDep))
       : stores;
     renderStores(initialStores);
 
-    // 🔹 Crear select de departamentos
+    // Create a selection of departments
     if (departments && departments.length) {
       const select = document.createElement("select");
       select.className = "border rounded px-2 py-1";
 
-      select.innerHTML = `<option value="">Selecciona una sucursal</option>` +
+      select.innerHTML = `<option value="">Select a branch</option>` +
         departments.map(d => `<option value="${d.id}">${d.name}</option>`).join("");
 
       if (savedDep) select.value = savedDep;
@@ -145,6 +144,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
   } catch (err) {
-    console.error("Error cargando datos iniciales:", err);
+    console.error("Error loading initial data:", err);
   }
 });
