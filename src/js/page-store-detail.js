@@ -27,16 +27,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   // Function to create WhatsApp link
-  const createWhatsAppLink = (phone, storeName, branchName) => {
-    const formattedPhone = formatPhoneForWhatsApp(phone);
-    if (!formattedPhone) return null;
+const createWhatsAppLink = (phone) => {
+  const formattedPhone = formatPhoneForWhatsApp(phone);
+  if (!formattedPhone) return null;
 
-    const message = encodeURIComponent(
-      `Hi! I'm interested in learning more about the services of ${storeName} - Branch ${branchName}. Could you provide more information? 🐾`
-    );
+  const message = encodeURIComponent("Hola, quiero más información para mi pase día 🐶");
 
-    return `https://wa.me/${formattedPhone.replace("+", "")}?text=${message}`;
-  };
+  return `https://wa.me/${formattedPhone.replace("+", "")}?text=${message}`;
+};
 
   try {
     // 1. Get the store
@@ -90,9 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ${branches
           .map((branch) => {
             const whatsappLink = createWhatsAppLink(
-              branch.phone,
-              store.name,
-              branch.name
+             "573004247905"
             );
 
             return `

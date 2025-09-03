@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <h3>${store.name}</h3>
         <p>${store.description || "No description available"}</p>
         <p><strong>Address:</strong> ${store.address || "Not specified"}</p>
-        <a href="../pages/store-detail.html?id=${store.id}" class="btn-detalle">See more</a>
+        <a href="./src/pages/store-detail.html?id=${store.id}" class="btn-detalle">See more</a>
       </div>
     `).join("");
 
