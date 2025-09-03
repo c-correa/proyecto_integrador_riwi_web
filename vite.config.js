@@ -30,5 +30,10 @@ export default defineConfig({
     alias: {
       '@': '/src'
     }
+  },
+  // Configuración para manejar rutas en producción
+  preview: {
+    port: 4173,
+    host: true
   }
 })
