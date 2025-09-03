@@ -1,0 +1,3 @@
+# Redirects para Render
+# Todas las rutas que no sean archivos estáticos van al index.html
+/*    /index.html   200
